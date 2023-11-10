@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+
+<body>
+    {% if all_courses|length == 0 %}
+    <div>
+        <h1>Courses list</h1>
+        <p>No courses found. Add the courses now!</p>
+    </div>
+    <div align = "right">
+        <h1><a href="/">Go to Students</a></h1>
+    </div>
+    <div>
+        <a href="/course/create">+ Add Course</a>
+    </div>
+    {% else %}
+        <!-- <div align = "right">
+            
+        </div> -->
+        <div>
+
+            <h1 align = "left">Courses list</h1>
+            <h1 align = "right"><a href="/">Go to Students</a></h1>
+        </div>
+        <table id="all-courses">
+            <thead>
+                <tr>
+                    <th>SNo</th>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>Course Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for crs in all_courses %}  
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td><a href="/course/{{crs.course_id}}">{{crs.course_code}}</a></td>
+                        <td>{{crs.course_name}}</td>
+                        <td>{{crs.course_description}}</td>
+                        <td>
+                            <a href="/course/{{crs.course_id}}/update">Update</a>
+                            <a href="/course/{{crs.course_id}}/delete">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <a href="/course/create">+Add Course</a>
+        </div>
+        {% endif %}
+</body>
+
+</html>

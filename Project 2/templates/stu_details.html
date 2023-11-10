@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+
+<body>
+    <div>
+        <h1>Student Details</h1>
+        <h3>{{text_box}}</h3>
+    </div>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Student Id</th>
+                    <th>Course Id</th>
+                    <th>Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for marks in allmarks %}
+                    {% if marks.st_id == text_box|int %}
+                        <tr>
+                            <td>{{text_box}}</td>
+                            <td>{{marks.cr_id}}</td>
+                            <td>{{marks.marks}}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr>
+                    <td colspan="2" style="text-align:center"> Total Marks </td>
+                    <td>{{summation}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div> <a href="/">Go back</a></div>
+
+</body>
+
+</html>
