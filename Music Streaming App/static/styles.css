@@ -1,0 +1,115 @@
+.img_div {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/static/home_2.jpg);
+    background-color: rgba(0, 0, 0, 1);
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    margin-top: -7.8px;
+    margin-left: -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    font-family: 'Kanit', serif;
+    font-size: 60px;
+}
+h3 {
+    color: white;
+    font-size: 50px;
+    font-family: 'Ubuntu', serif;
+}
+span {
+    color: white;
+    font-family: 'Ubuntu', serif;
+}
+
+.signin{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.5);
+    width: 512px;
+    height: 530px;
+    margin-top: -8px;
+    border: 3px solid orange;
+    border-radius: 16px;
+    align-items: center;
+}
+#user {
+    height: 58px;
+    width: 70%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 21px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 2.5px solid #d0440b;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    color: white;
+    padding-left: 20px;
+}
+
+#user::placeholder {
+    color: rgb(249, 244, 244);
+    font-size: 19.5px;
+    letter-spacing: 0.07em;
+}
+
+#user:focus {
+    border: 2.5px solid white;
+    outline: none;
+}
+#pass {
+    height: 58px;
+    width: 70%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 21px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 2.5px solid #d0440b;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    color: white;
+    padding-left: 20px;
+}
+
+#pass::placeholder {
+    color: rgb(249, 244, 244);
+    font-size: 19.5px;
+    letter-spacing: 0.07em;
+}
+
+#pass:focus {
+    border: 2.5px solid white;
+    outline: none;
+}
+
+#signin{
+    display: block;
+    background-color: transparent;
+    width: 88px;
+    height: 40px;
+    font-family: 'Poppins', serif;
+    font-weight: bold;
+    border: 2px solid cornsilk;
+    /* padding-bottom: 4px; */
+    clear: both;
+    border-radius: 10px;
+    font-size: 15px;
+    letter-spacing: 1.3px;
+    color: white;
+}
+
+form{
+    display: contents;
+}
+
+#signin:hover{
+    border-color: orange;
+    cursor: pointer;
+}
+
+
+

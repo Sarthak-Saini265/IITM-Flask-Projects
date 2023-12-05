@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>SoundSphere</title>
+</head>
+<body>
+    <div class="main_div">
+        <div class="img_div">
+            <h1>Welcome to SoundSphere</h1>
+            <div class="signin">
+                <h3>Sign In</h3>
+                <form action="/signin" method="POST">
+                    <input type="text" name="username"  placeholder="Username" id="user">
+                    <input type="text" name="password"  placeholder="Password" id="pass">
+                    <input type="submit" id="signin" value="Sign In">
+                </form>
+                <!-- <button id="music">Play</button> -->
+                <br>
+                <span>Don't have an account? <a href="#">Sign Up</a></span>
+            </div>
+        </div>
+    </div>
+    {% if trigger_js %}
+        <script>
+            alert('Wrong Password')
+            let password = document.getElementById('pass')
+            password.style.borderColor = 'red';
+        </script>
+    {% endif %}
+
+    {% if trigger_js_2 %}
+        <script>
+            alert('User Not Found')
+            let username = document.getElementById('user')
+            username.style.borderColor = 'red';
+        </script>
+    {% endif %}
+</body>
+</html>
