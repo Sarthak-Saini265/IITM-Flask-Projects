@@ -18,13 +18,18 @@
         <header id="head1" class="navbar_head">
             <nav id="nav1" class="navbar">
                 <ul>
-                    <li><a href="#" class="nav_link">Home</a></li>
-                    <li><a href="#" class="nav_link">Upload Song</a></li>
+                    <li><a href="/creator/{{username}}" class="nav_link">Home</a></li>
+                    <li><a href="/upload" class="nav_link">Upload Song</a></li>
                     <li><a href="#" class="nav_link">Manage Albums</a></li>
                 </ul>
             </nav>
         </header>
         <h1>Welcome {{username}}</h1>
+        <div class="uploaded">
+            {% for  in  %}
+                
+            {% endfor %}
+        </div>
     </div>
 </body>
 

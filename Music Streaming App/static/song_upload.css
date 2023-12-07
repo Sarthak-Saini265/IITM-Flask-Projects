@@ -1,0 +1,119 @@
+.main_div {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/static/test_3.jpg);
+    background-color: rgba(0, 0, 0, 1);
+    background-size: cover;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    margin-top: -7.8px;
+    margin-left: -8px;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+
+.upload {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 50%;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid #ffc800;
+    border-radius: 15px;
+    margin-top: 8em;
+}
+
+#song_name {
+    height: 65px;
+    width: 65%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 21px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 2.5px solid #d0440b;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    color: white;
+    padding-left: 20px;
+}
+
+#song_name::placeholder {
+    color: rgb(249, 244, 244);
+    font-size: 19.5px;
+    letter-spacing: 0.07em;
+}
+
+#song_name:focus {
+    border: 2.5px solid white;
+    outline: none;
+}
+
+#file {
+    height: 45px;
+    width: 52%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 21px;
+    /* background-color: rgba(0, 0, 0, 0.25); */
+    /* border: 2.5px solid #d0440b; */
+    /* border-radius: 10px; */
+    margin-bottom: 1rem;
+    color: white;   
+}
+
+#file::placeholder {
+    color: rgb(249, 244, 244);
+    font-size: 19.5px;
+    letter-spacing: 0.07em;
+}
+
+#file:focus {
+    border: 2.5px solid white;
+    outline: none;
+}
+
+#submit {
+    display: block;
+    background-color: transparent;
+    width: 88px;
+    height: 40px;
+    /* font-family: 'Poppins', serif; */
+    /* font-weight: bold; */
+    border: 2px solid cornsilk;
+    /* padding-bottom: 4px; */
+    clear: both;
+    border-radius: 10px;
+    font-size: 15px;
+    letter-spacing: 1.3px;
+    color: white;
+    font-family: 'Ubuntu', serif;
+}
+
+#submit:hover {
+    cursor: pointer;
+    border-color: greenyellow;
+}
+
+
+.head {
+    color: white;
+    font-size: 4em;
+}
+
+form {
+    margin-right: -155px;
+}
+
+.choose_span{
+    font-family: 'Ubuntu', serif;
+    color: white;
+}
+
+
+
+
+
+
+
