@@ -1,12 +1,18 @@
 from flask import Flask, render_template, request, redirect
 from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
-from pydub import AudioSegment
-from pydub.utils import mediainfo
+from mutagen.mp3 import MP3
+from models import db, login, songs, albums, ratings, playlists, playlist_songs, album_songs
 import os
+
 
 app = Flask(__name__)
 api = Api(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///music_streaming_app.sqlite3"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 UPLOAD_FOLDER_TXT = 'static'
@@ -14,44 +20,13 @@ app.config['UPLOAD_FOLDER_TXT'] = UPLOAD_FOLDER_TXT
 app.app_context().push()
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///music_streaming_app.sqlite3"
-db = SQLAlchemy(app)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-class login(db.Model):
-    ID = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    username = db.Column(db.String(30), unique = True, nullable = False)
-    password = db.Column(db.String(20), unique = True, nullable = False)
-    acc_type = db.Column(db.String(10), nullable = False)
 
-    def __repr__(self):
-        return f"{self.ID}-{self.username} {self.password} {self.acc_type}"
-
-class songs(db.Model):
-    song_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    name = db.Column(db.String(30), unique = False, nullable = False)
-    lyrics = db.Column(db.Text, unique = False, nullable = False)
-    duration = db.Column(db.String(15), nullable = False)
-    album_id = db.Column(db.Integer, db.ForeignKey('albums.album_id'), nullable=True, default=None)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
-    mp3 = db.Column(db.String(255), nullable=False, unique=False)
-
-    album = db.relationship('albums', backref=db.backref('songs', lazy=True))
-
-    def __repr__(self):
-        return f"{self.song_id}-{self.name} {self.duration} {self.date_created}"   
-
-class albums(db.Model):
-    album_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    name = db.Column(db.String(30), unique = False, nullable = False)
-    artist = db.Column(db.String(30), unique = False, nullable = False)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
-
-    def __repr__(self):
-        return f"{self.song_id}-{self.name} {self.duration} {self.date_created}"   
 
 # db.create_all()
-
+# song = songs.query.filter_by(song_id=1).first()
+# db.session.delete(song)
+# db.session.commit()
 # db.session.query(songs).delete()
 # db.session.commit()
 # add_song = songs(name='Star Sky', lyrics=lyrics_content, duration='05:35', mp3='/uploads/Two Steps From Hell - Star Sky.mp3')
@@ -61,14 +36,15 @@ class albums(db.Model):
 # db.session.delete(dele)
 # db.session.commit()
 
+
 resource_fields_2 = {
     'username' : fields.String,
     'password' : fields.String,
 }
 
 acc_post_args = reqparse.RequestParser()
-acc_post_args.add_argument("username", type=str, help = "Username is required", required = True)
-acc_post_args.add_argument("password", type=str, help = "Password is required", required = True)
+acc_post_args.add_argument("username", type=str, help = "Username is required", required = True, location='form')
+acc_post_args.add_argument("password", type=str, help = "Password is required", required = True, location='form')
 
 
 @app.route('/')
@@ -151,6 +127,10 @@ resource_fields = {
 task_post_args = reqparse.RequestParser()
 task_post_args.add_argument("name", type=str, help = "Name is required", required = True)
 
+def format_duration(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    return f'{int(minutes):02d}:{int(seconds):02d}'
+
 class Todo(Resource):
     @marshal_with(resource_fields)
     def post(self):
@@ -159,22 +139,21 @@ class Todo(Resource):
         lyr_path = os.path.join(app.config['UPLOAD_FOLDER_TXT'], lyr.filename)
         print(lyr_path)
         lyr.save(lyr_path)
-        with open(f'static/{lyr.filename}', 'r') as file_r:
+        with open(f'static/{lyr.filename}', 'r', encoding='utf-8') as file_r:
             lyrics_content = file_r.read()
         file = request.files['file']
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         print(file_path)
         file.save(file_path)
-        audio_info = mediainfo(file_path)
-        duration_in_seconds = float(audio_info['duration'])
-        # print('wdwdwewdcwdwfegg')
+        audio = MP3(file_path)
+        duration = audio.info.length
         name = request.form['name']
         # print('njndjkasnsknasdkwmswk')
-        song = songs(name = name, lyrics = lyrics_content, duration = duration_in_seconds, mp3=f'/uploads/{file.filename}')
+        song = songs(name = name, lyrics = lyrics_content, duration = format_duration(duration), path=f'/uploads/{file.filename}')
         db.session.add(song)
         db.session.commit()
-        return song, f'Path-{file_path}'
+        return f'Song Name - {name}\nUploaded Successfully'
     
 @app.route('/upload')
 def upload():

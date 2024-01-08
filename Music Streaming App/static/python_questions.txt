@@ -1,4 +1,0 @@
-1. print 'hello world'
-2.to print the list of keywords in the python version of our system
-3.input any string from the user and check whether the entered string is a keyword or not
-4. enter the help utility and check for the details of some user input keywords, library names or any other strings

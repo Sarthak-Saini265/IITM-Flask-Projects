@@ -127,36 +127,60 @@ h4 {
 }
 
 @keyframes rainbow {
-    0% {border-color: red;}
-    14% {border-color: orange;}
-    28% {border-color: yellow;}
-    42% {border-color: lime;}
-    57% {border-color: blue;}
-    71% {border-color: indigo;}
-    85% {border-color: violet;}
-    100% {border-color: red;}
-  }
+    0% {
+        border-color: red;
+    }
+
+    14% {
+        border-color: orange;
+    }
+
+    28% {
+        border-color: yellow;
+    }
+
+    42% {
+        border-color: lime;
+    }
+
+    57% {
+        border-color: blue;
+    }
+
+    71% {
+        border-color: indigo;
+    }
+
+    85% {
+        border-color: violet;
+    }
+
+    100% {
+        border-color: red;
+    }
+}
 
 #signin_logo:hover {
     border-color: rgb(94, 90, 90) !important;
 }
 
-.colorful-button{
+.colorful-button {
     margin-right: -715px;
 }
 
-.content{
+.content {
     background-color: green;
     height: 100vh;
     width: 907%;
     margin-left: 1900px;
     margin-top: -505px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.songs{
+.songs {
     height: 235px;
     width: 225px;
     background-color: white;
@@ -165,17 +189,9 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 45px;
 }
 
-.song_name{
+.song_name {
     color: black;
 }
-
-
-
-
-
-
-
-
-

@@ -43,7 +43,7 @@
                 {% for song in all_songs %}
                     <div class="songs">
                         <h2 class="song_name">{{song.name}}</h2>
-                        <button class="song_play" data-mp3="{{song.mp3}}">Play</button>
+                        <button class="song_play" data-mp3="{{song.path}}">Play</button>
                     </div>
                 {% endfor %}
             </div>
