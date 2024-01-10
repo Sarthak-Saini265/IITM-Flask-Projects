@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
 from mutagen.mp3 import MP3
@@ -154,6 +154,40 @@ class Todo(Resource):
         db.session.add(song)
         db.session.commit()
         return f'Song Name - {name}\nUploaded Successfully'
+
+resource_fields_3 = {
+    'name' : fields.String,
+    'songs': fields.List(fields.String),
+}
+
+play_post_args = reqparse.RequestParser()
+play_post_args.add_argument("name", type=str, help = "Playlist Name is required", required = True, location='form')
+
+class create_play(Resource):
+    @marshal_with(resource_fields_3)
+    def post(self, username):
+        l = []
+        user = login.query.filter_by(username=username).first()
+        args = play_post_args.parse_args()
+        songs_selected = request.form.getlist('songs')
+        playlist = playlists(user_id=user.user_id, name = args["name"])
+        db.session.add(playlist)
+        db.session.commit()
+        playlist_id = playlist.playlist_id
+        for song in songs_selected:
+            song_id = int(song)
+            play_songs = playlist_songs(playlist_id=playlist_id, song_id=song_id)
+            db.session.add(play_songs)
+            song_ = songs.query.filter_by(song_id=song_id).first()
+            l.append(song_.name)
+
+        playlist_data = {
+            'name': playlist.name,
+            'songs': l
+        }
+        db.session.commit()
+        return playlist_data
+
     
 @app.route('/upload')
 def upload():
@@ -163,15 +197,34 @@ def upload():
 @app.route('/user/<username>')
 def user_page(username):
     all_songs = songs.query.all()
+    all_playlists = playlists.query.all()
     user = login.query.filter_by(username=username, acc_type='General').first()
     if user and user.acc_type == 'General':
-        return render_template('user_page.html', username=username, all_songs=all_songs)
+        return render_template('user_page.html', username=username, all_songs=all_songs, all_playlists=all_playlists)
     else:
         return 'User not Found'
+
+@app.route('/user/<username>/new_playlist')
+def create_playlist(username):
+    all_songs = songs.query.all()
+    return render_template('create_playlist.html', username=username, all_songs=all_songs)
+
+@app.route('/user/<username>/playlist/<int:playlist_id>')
+def get_songs_by_playlist(username, playlist_id):
+    all_playlists = playlists.query.all()
+    playlist = playlists.query.get(playlist_id)
+
+    if not playlist:
+        return abort('error: Playlist not found'), 404
+
+    playlist_songs = playlist.playlist_songs
+
+    return render_template('playlist.html', playlist_songs=playlist_songs, username=username, all_playlists=all_playlists)
 
 
 api.add_resource(Todo, "/song/upload")
 api.add_resource(new_acc, "/signup")
+api.add_resource(create_play, "/playlist/create/<username>")
 
 
 if __name__ == "__main__":

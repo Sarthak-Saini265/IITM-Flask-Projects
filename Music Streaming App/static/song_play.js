@@ -13,5 +13,12 @@ for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', play);
 }
 
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('song_play')) {
+        play(event);
+    }
+});
+
+
 // console.log('jnwjndjwandwjndjwn')
 

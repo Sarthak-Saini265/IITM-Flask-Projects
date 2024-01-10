@@ -171,9 +171,9 @@ h4 {
 .content {
     background-color: green;
     height: 100vh;
-    width: 907%;
-    margin-left: 1900px;
-    margin-top: -505px;
+    width: 90.85%;
+    margin-left: 189px;
+    margin-top: -911px;
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -195,3 +195,27 @@ h4 {
 .song_name {
     color: black;
 }
+
+.playlists {
+    background-color: black;
+    height: 302px;
+    width: 174px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.playlist_name{
+    color: white;
+    font-size: 19px;
+    font-family: 'Ubuntu', serif;
+}
+
+.playlist_name:hover{
+    color: darkorange;
+    text-decoration: underline;
+}
+

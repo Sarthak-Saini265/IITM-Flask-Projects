@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/user_page.css">
+    <title>User Page</title>
+</head>
+
+<body>
+    <div class="main_div">
+        <header id="head1" class="navbar_head">
+            <nav id="nav1" class="navbar">
+                <ul>
+                    <li><input type="text" id="search" placeholder="What's on your mind?"></li>
+                </ul>
+            </nav>
+            <a href="/creator" class="colorful-button"><button id="signin_logo">Become a Creator</button></a>
+        </header>
+        <div class="side_bar">
+            <a href="/user/{{username}}" class="side_text">
+                <h2 id="home">Home</h2>
+            </a>
+            <a href="#" class="side_text">
+                <h2 id="album">Albums</h2>
+            </a>
+            <a href="#" class="side_text">
+                <h2 id="playlist">Playlists</h2>
+            </a>
+            <a href="/user/{{username}}/new_playlist" id="n_play">
+                <div class="new_playlist">
+                    <h4>+</h4>
+                    New Playlist
+                </div>
+            </a>
+            <div class="playlists">
+                {% for play in all_playlists %}
+                    <a href="/user/{{username}}/playlist/{{play.playlist_id}}" class="playlist_name">{{play.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content">
+            {% for song in playlist_songs %}
+                <div class="songs">
+                    <h2 class="song_name">{{song.song.name}}</h2>
+                    <button class="song_play" data-mp3="{{song.song.path}}">Play</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    <script src="/static/rgb_button.js"></script>
+    <script src="/static/song_play.js"></script>
+    <!-- <script src="/static/playlist.js"></script> -->
+</body>
+
+</html>

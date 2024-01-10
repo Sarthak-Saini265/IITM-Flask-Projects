@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Playlist</title>
+</head>
+<body>
+    <div class="main_div">
+        <div class="upload">
+            <h1 class="head">Create a Playlist</h1>
+            <form action="/playlist/create/{{username}}" method="POST">
+                <input name="name" type="text", placeholder="Name of the playlist">
+                <div><br>
+                    <label>Select Songs: </label>
+                    {% for song in all_songs %}
+                        <input type="checkbox" name="songs" value= "{{loop.index}}"/>
+                        <label>{{song.name}}</label>
+                    {% endfor %}
+                </div><br>
+                <input type="submit" id="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
