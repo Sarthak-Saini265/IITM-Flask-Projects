@@ -194,6 +194,9 @@ h4 {
 
 .song_name {
     color: black;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+    font-size: 25px;
 }
 
 .playlists {
