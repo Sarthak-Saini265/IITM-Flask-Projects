@@ -36,6 +36,55 @@ a:hover {
     background-color: #e3d7bf;
 }
 
+.uploaded {
+    background-color: #e3d7bf;
+    height: 100vh;
+    width: 100%;
+    /* margin-left: 189px; */
+    /* margin-top: -911px; */
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.songs {
+    height: 235px;
+    width: 225px;
+    background-color: white;
+    margin-top: 55px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 45px;
+}
+
+.song_name {
+    color: black;
+}
+
+h1{
+    color: black;
+    font-family: 'Ubuntu', serif;
+    letter-spacing: 0.8px;
+    padding-left: 10px;
+}
+
+h2{
+    color: black;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+}
+
+#heading_text{
+    font-size: 25px;
+    padding-left: 10px;
+    color: rgb(241, 148, 7);
+    margin-bottom: -23px;
+}
+
+
 
 
 

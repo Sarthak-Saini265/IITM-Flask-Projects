@@ -118,7 +118,10 @@ def creator_signin():
     
 @app.route('/creator/<username>')
 def creator_page(username):
-    return render_template('creator_page.html', username=username)
+    user = login.query.filter_by(username=username).first()
+    uploaded_songs = songs.query.filter_by(creator_id=user.user_id)
+    print(uploaded_songs)
+    return render_template('creator_page.html', username=username, uploaded_songs=uploaded_songs)
 
 resource_fields = {
     'name' : fields.String

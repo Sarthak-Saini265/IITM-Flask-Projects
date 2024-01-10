@@ -24,10 +24,18 @@
                 </ul>
             </nav>
         </header>
-        <h1>Welcome {{username}}</h1>
+        <h1>Welcome {{username}}</h1><br>
+        <h2 id="heading_text">Your Uploaded songs :</h2>
         <div class="uploaded">
+            {% for song in uploaded_songs %}
+            <div class="songs">
+                <h2 class="song_name">{{song.name}}</h2>
+                <button class="song_play" data-mp3="{{song.path}}">Play</button>
+            </div>
+            {% endfor %}
         </div>
     </div>
+    <script src="/static/song_play.js"></script>
 </body>
 
 </html>
