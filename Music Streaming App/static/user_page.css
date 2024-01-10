@@ -205,7 +205,7 @@ h4 {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .playlist_name{
