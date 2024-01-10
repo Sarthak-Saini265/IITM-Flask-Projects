@@ -1,0 +1,4 @@
+a = 10
+b = 14
+a_binary = 0001010
+b_binary
