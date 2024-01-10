@@ -15,7 +15,7 @@ db.init_app(app)
 
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-UPLOAD_FOLDER_TXT = 'static'
+UPLOAD_FOLDER_TXT = 'static/lyrics'
 app.config['UPLOAD_FOLDER_TXT'] = UPLOAD_FOLDER_TXT
 app.app_context().push()
 
@@ -133,13 +133,14 @@ def format_duration(seconds):
 
 class Todo(Resource):
     @marshal_with(resource_fields)
-    def post(self):
+    def post(self, username):
+        user = login.query.filter_by(username=username).first()
         lyr = request.files['txt']
         os.makedirs(app.config['UPLOAD_FOLDER_TXT'], exist_ok=True)
         lyr_path = os.path.join(app.config['UPLOAD_FOLDER_TXT'], lyr.filename)
         print(lyr_path)
         lyr.save(lyr_path)
-        with open(f'static/{lyr.filename}', 'r', encoding='utf-8') as file_r:
+        with open(f'static/lyrics/{lyr.filename}', 'r', encoding='utf-8') as file_r:
             lyrics_content = file_r.read()
         file = request.files['file']
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -149,8 +150,9 @@ class Todo(Resource):
         audio = MP3(file_path)
         duration = audio.info.length
         name = request.form['name']
+        creator_id = user.user_id
         # print('njndjkasnsknasdkwmswk')
-        song = songs(name = name, lyrics = lyrics_content, duration = format_duration(duration), path=f'/uploads/{file.filename}')
+        song = songs(creator_id = creator_id,name = name, lyrics = lyrics_content, duration = format_duration(duration), path=f'/uploads/{file.filename}')
         db.session.add(song)
         db.session.commit()
         return f'Song Name - {name}\nUploaded Successfully'
@@ -189,9 +191,9 @@ class create_play(Resource):
         return playlist_data
 
     
-@app.route('/upload')
-def upload():
-    return render_template('upload_song.html')
+@app.route('/<username>/upload')
+def upload(username):
+    return render_template('upload_song.html', username=username)
 
 
 @app.route('/user/<username>')
@@ -222,7 +224,7 @@ def get_songs_by_playlist(username, playlist_id):
     return render_template('playlist.html', playlist_songs=playlist_songs, username=username, all_playlists=all_playlists)
 
 
-api.add_resource(Todo, "/song/upload")
+api.add_resource(Todo, "/<username>/song/upload")
 api.add_resource(new_acc, "/signup")
 api.add_resource(create_play, "/playlist/create/<username>")
 

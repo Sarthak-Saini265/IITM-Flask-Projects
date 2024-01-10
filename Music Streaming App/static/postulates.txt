@@ -1,5 +1,0 @@
-Postulates of Boolean Algebra-
-1. a = 0, if and only if a !=1.
-2. x + 0 = x
-3. Commutative Law - x.y = y.x
-4. Associative Law - x+(y+z) = (x+y)+z

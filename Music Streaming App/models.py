@@ -12,10 +12,11 @@ class login(db.Model):
 
 class songs(db.Model):
     song_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    creator_id = db.Column(db.Integer, db.ForeignKey('login.user_id'))  
     name = db.Column(db.String(30), unique = False, nullable = False)
     lyrics = db.Column(db.Text, unique = False, nullable = False)
     duration = db.Column(db.String(15), nullable = False)
-#    album_id = db.Column(db.Integer, db.ForeignKey('albums.album_id'), nullable=True, default=None)
+#   album_id = db.Column(db.Integer, db.ForeignKey('albums.album_id'), nullable=True, default=None)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
     path = db.Column(db.String(255), nullable=False, unique=True)
 
