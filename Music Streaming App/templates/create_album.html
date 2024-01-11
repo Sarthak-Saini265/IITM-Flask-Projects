@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Album</title>
+</head>
+<body>
+    <div class="main_div">
+        <div class="upload">
+            <h1 class="head">Create an Album</h1>
+            <form action="/album/create/{{username}}" method="POST">
+                <input name="name" type="text", placeholder="Name of the album">
+                <input name="artist" type="text", placeholder="Name of the artist">
+                <input name="genre" type="text", placeholder="Genre of the album">
+                <div><br>
+                    <label>Select Songs: </label>
+                    {% for song in uploaded_songs %}
+                        <input type="checkbox" name="songs" value= "{{song.song_id}}"/>
+                        <label>{{song.name}}</label>
+                    {% endfor %}
+                </div><br>
+                <input type="submit" id="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

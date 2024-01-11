@@ -14,7 +14,7 @@
                 <div><br>
                     <label>Select Songs: </label>
                     {% for song in all_songs %}
-                        <input type="checkbox" name="songs" value= "{{loop.index}}"/>
+                        <input type="checkbox" name="songs" value= "{{song.song_id}}"/>
                         <label>{{song.name}}</label>
                     {% endfor %}
                 </div><br>

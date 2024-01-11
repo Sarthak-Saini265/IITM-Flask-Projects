@@ -27,6 +27,7 @@ class songs(db.Model):
 
 class albums(db.Model):
     album_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    creator_id = db.Column(db.Integer, db.ForeignKey('login.user_id'))
     name = db.Column(db.String(30), unique = False, nullable = False)
     artist = db.Column(db.String(30), unique = False, nullable = False)
     genre = db.Column(db.String(40), unique=False, nullable=False)

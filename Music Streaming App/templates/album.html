@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/creator_page.css">
+    <title>Creator Page</title>
+</head>
+
+<body>
+    <div class="main_div">
+        <header id="head1" class="navbar_head">
+            <nav id="nav1" class="navbar">
+                <ul>
+                    <li><a href="/creator/{{username}}" class="nav_link">Home</a></li>
+                    <li><a href="/{{username}}/upload" class="nav_link">Upload Song</a></li>
+                    <li><a href="/{{username}}/albums" class="nav_link">Manage Albums</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h2 id="heading_text">Album : {{album_name}}</h2>
+        <div class="uploaded">
+            {% for song in album_songs %}
+            <div class="songs">
+                <h2 class="song_name">{{song.song.name}}</h2>
+                <button class="song_play" data-mp3="{{song.song.path}}">Play</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="/static/song_play.js"></script>
+</body>
+</html>

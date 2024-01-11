@@ -1,0 +1,98 @@
+.navbar_head {
+    border: 3.5px solid white;
+    background-color: rgba(0, 0, 0, 0.55);
+    margin: auto;
+    height: 50px;
+    border-radius: 50px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    float: left;
+}
+
+a {
+    color: rgb(225 241 16);
+    text-decoration: none;
+    padding: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 1px;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.main_div {
+    height: 100vh;
+    width: 100%;
+    margin-top: -7.8px;
+    margin-left: -8px;
+    background-color: #e3d7bf;
+}
+
+.created {
+    background-color: #e3d7bf;
+    height: 100vh;
+    width: 100%;
+    /* margin-left: 189px; */
+    /* margin-top: -911px; */
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.albums {
+    height: 235px;
+    width: 225px;
+    background-color: white;
+    margin-top: 55px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 45px;
+}
+
+.album_name {
+    color: black;
+    font-family: 'Poppins', serif !important; 
+    letter-spacing: 1px !important;
+}
+
+h1{
+    color: black;
+    font-family: 'Ubuntu', serif;
+    letter-spacing: 0.8px;
+    padding-left: 10px;
+}
+
+h2{
+    color: black;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+}
+
+h3{
+    color: black;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+}
+
+#heading_text{
+    font-size: 25px;
+    padding-left: 10px;
+    color: rgb(241, 148, 7);
+    margin-bottom: -23px;
+}
+
+
+
+
+
