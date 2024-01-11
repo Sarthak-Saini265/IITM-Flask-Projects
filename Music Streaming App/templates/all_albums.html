@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/user_page.css">
+    <link rel="stylesheet" href="/static/all_albums.css">
     <title>User Page</title>
 </head>
 
@@ -27,7 +27,7 @@
             <a href="/user/{{username}}" class="side_text">
                 <h2 id="home">Home</h2>
             </a>
-            <a href="/user/{{username}}/all_albums" class="side_text">
+            <a href="#" class="side_text">
                 <h2 id="album">Albums</h2>
             </a>
             <a href="#" class="side_text">
@@ -46,10 +46,10 @@
             </div>
         </div>
         <div class="content">
-            {% for song in all_songs %}
-                <div class="songs">
-                    <h3 class="song_name">{{song.name}}</h3>
-                    <button class="song_play" data-mp3="{{song.path}}">Play</button>
+            {% for album in all_albums %}
+                <div class="albums">
+                    <a href="/creator/{{username}}/album/{{album.album_id}}"><h2 class="album_name">{{album.name}}</h2></a>
+                    <h3 class="artist_name">{{album.artist}}</h3>
                 </div>
             {% endfor %}
         </div>

@@ -213,6 +213,14 @@ def user_page(username):
     else:
         return 'User not Found'
 
+
+@app.route('/user/<username>/all_albums')
+def all_albums(username):
+    all_albums = albums.query.all()
+    all_playlists = playlists.query.all()
+    return render_template('all_albums.html', username=username, all_albums=all_albums, all_playlists=all_playlists)
+
+
 @app.route('/user/<username>/new_playlist')
 def create_playlist(username):
     all_songs = songs.query.all()
