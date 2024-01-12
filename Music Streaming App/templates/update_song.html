@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/song_upload.css">
+    <title>Update Song</title>
+</head>
+
+<body>
+    <div class="main_div">
+        <div class="upload">
+            <h1 class="head">Update Song</h1>
+            <form action="/{{username}}/song/upload" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Name of the Song" id="song_name">
+                <!-- <label for="file">Choose a file:</label> -->
+                <br>
+                <span class="choose_span">Choose a Lyrics File(.txt)</span><input type="file" name="txt" id="file" accept=".txt" required>
+                <br>
+                <span class="choose_span">Choose a Mp3 File</span><input type="file" name="file" id="file" accept=".mp3" required>
+                <input type="submit" id="submit" value="Upload">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

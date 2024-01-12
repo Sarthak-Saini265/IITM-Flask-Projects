@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, jsonify
-from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
-from flask_sqlalchemy import SQLAlchemy
-from mutagen.mp3 import MP3
+from flask_restful import Api, reqparse, abort
+from api.user_resource import new_acc
+from api.song_resource import Todo
+from api.playlist_resource import create_play
+from api.album_resource import new_album
 from models import db, login, songs, albums, ratings, playlists, playlist_songs, album_songs
-import os
 
 
 app = Flask(__name__)
@@ -41,14 +42,7 @@ app.app_context().push()
 # db.session.commit()
 
 
-resource_fields_2 = {
-    'username' : fields.String,
-    'password' : fields.String,
-}
 
-acc_post_args = reqparse.RequestParser()
-acc_post_args.add_argument("username", type=str, help = "Username is required", required = True, location='form')
-acc_post_args.add_argument("password", type=str, help = "Password is required", required = True, location='form')
 
 
 @app.route('/')
@@ -59,9 +53,6 @@ def hello():
 def signin():
     username = request.form['username']
     password = request.form['password']
-    # add = login(username=username, password=password, acc_type='General')
-    # db.session.add(add)
-    # db.session.commit()
     user = login.query.filter_by(username=username).first()
     if user:
         if password == user.password:
@@ -75,14 +66,7 @@ def signin():
 def create_account():
     return render_template('user_sign_up.html')
 
-class new_acc(Resource):
-    @marshal_with(resource_fields_2)
-    def post(self):
-        args = acc_post_args.parse_args()
-        new = login(username = args["username"], password = args["password"], acc_type = 'General')
-        db.session.add(new)
-        db.session.commit()
-        return new
+
     
 
 
@@ -127,75 +111,9 @@ def creator_page(username):
     print(uploaded_songs)
     return render_template('creator_page.html', username=username, uploaded_songs=uploaded_songs)
 
-resource_fields = {
-    'name' : fields.String
-}
 
-task_post_args = reqparse.RequestParser()
-task_post_args.add_argument("name", type=str, help = "Name is required", required = True)
 
-def format_duration(seconds):
-    minutes, seconds = divmod(seconds, 60)
-    return f'{int(minutes):02d}:{int(seconds):02d}'
 
-class Todo(Resource):
-    @marshal_with(resource_fields)
-    def post(self, username):
-        user = login.query.filter_by(username=username).first()
-        lyr = request.files['txt']
-        os.makedirs(app.config['UPLOAD_FOLDER_TXT'], exist_ok=True)
-        lyr_path = os.path.join(app.config['UPLOAD_FOLDER_TXT'], lyr.filename)
-        print(lyr_path)
-        lyr.save(lyr_path)
-        with open(f'static/lyrics/{lyr.filename}', 'r', encoding='utf-8') as file_r:
-            lyrics_content = file_r.read()
-        file = request.files['file']
-        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        print(file_path)
-        file.save(file_path)
-        audio = MP3(file_path)
-        duration = audio.info.length
-        name = request.form['name']
-        creator_id = user.user_id
-        # print('njndjkasnsknasdkwmswk')
-        song = songs(creator_id = creator_id,name = name, lyrics = lyrics_content, duration = format_duration(duration), path=f'/uploads/{file.filename}')
-        db.session.add(song)
-        db.session.commit()
-        return f'Song Name - {name}\nUploaded Successfully'
-
-resource_fields_3 = {
-    'name' : fields.String,
-    'songs': fields.List(fields.String),
-}
-
-play_post_args = reqparse.RequestParser()
-play_post_args.add_argument("name", type=str, help = "Playlist Name is required", required = True, location='form')
-
-class create_play(Resource):
-    @marshal_with(resource_fields_3)
-    def post(self, username):
-        l = []
-        user = login.query.filter_by(username=username).first()
-        args = play_post_args.parse_args()
-        songs_selected = request.form.getlist('songs')
-        playlist = playlists(user_id=user.user_id, name = args["name"])
-        db.session.add(playlist)
-        db.session.commit()
-        playlist_id = playlist.playlist_id
-        for song in songs_selected:
-            song_id = int(song)
-            play_songs = playlist_songs(playlist_id=playlist_id, song_id=song_id)
-            db.session.add(play_songs)
-            song_ = songs.query.filter_by(song_id=song_id).first()
-            l.append(song_.name)
-
-        playlist_data = {
-            'name': playlist.name,
-            'songs': l
-        }
-        db.session.commit()
-        return playlist_data
 
     
 @app.route('/<username>/upload')
@@ -261,52 +179,11 @@ def get_songs_by_album(username, album_id):
 
     return render_template('album.html', album_songs=album_songs, username=username, album_name=album_name)
 
-resource_fields_4 = {
-    'name' : fields.String,
-    'artist' : fields.String,
-    'genre' : fields.String,
-    'songs' : fields.List(fields.String),
-}
-
-album_post_args = reqparse.RequestParser()
-album_post_args.add_argument("name", type=str, help = "Album Name is required", required = True, location='form')
-album_post_args.add_argument("artist", type=str, help = "Artist Name is required", required = True, location='form')
-album_post_args.add_argument("genre", type=str, help = "Genre is required", required = True, location='form')
-
-class new_album(Resource):
-    @marshal_with(resource_fields_4)
-    def post(self, username):
-        l = []
-        user = login.query.filter_by(username=username).first()
-        args = album_post_args.parse_args()
-        songs_selected = request.form.getlist('songs')
-        album = albums(creator_id = user.user_id, name = args['name'], artist = args['artist'], genre = args['genre'])
-        db.session.add(album)
-        db.session.commit()
-        album_id = album.album_id
-        print(songs_selected)
-        for song in songs_selected:
-            song_id = int(song)
-            print(f"Processing song_id: {song_id}")
-            album_song = album_songs(album_id=album_id, song_id=song_id)
-            db.session.add(album_song)
-            song_ = songs.query.filter_by(song_id=song_id).first()
-            l.append(song_.name)
-        album_data = {
-            'name': album.name,
-            'artist' : album.artist,
-            'genre' : album.genre,
-            'songs': l
-        }
-        db.session.commit()
-        return album_data
 
 
 
-
-
-
-api.add_resource(Todo, "/<username>/song/upload")
+api.add_resource(Todo, "/<username>/song/upload", endpoint="upload_song")
+api.add_resource(Todo, "/<username>/song/<int:song_id>", endpoint="update_song")
 api.add_resource(new_acc, "/signup")
 api.add_resource(create_play, "/playlist/create/<username>")
 api.add_resource(new_album, "/album/create/<username>")
