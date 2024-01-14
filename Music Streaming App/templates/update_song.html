@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/song_upload.css">
+    <link rel="stylesheet" href="/static/song_update.css">
     <title>Update Song</title>
 </head>
 
@@ -17,14 +17,14 @@
     <div class="main_div">
         <div class="upload">
             <h1 class="head">Update Song</h1>
-            <form action="/{{username}}/song/upload" method="POST" enctype="multipart/form-data">
-                <input type="text" name="name" placeholder="Name of the Song" id="song_name">
+            <form action="/{{username}}/song/{{song_id}}" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Updated Name" id="song_name">
                 <!-- <label for="file">Choose a file:</label> -->
                 <br>
-                <span class="choose_span">Choose a Lyrics File(.txt)</span><input type="file" name="txt" id="file" accept=".txt" required>
+                <span class="choose_span">Choose a Lyrics File(.txt)</span><input type="file" name="txt" id="file" accept=".txt">
                 <br>
-                <span class="choose_span">Choose a Mp3 File</span><input type="file" name="file" id="file" accept=".mp3" required>
-                <input type="submit" id="submit" value="Upload">
+                <span class="choose_span">Choose a Mp3 File</span><input type="file" name="file" id="file" accept=".mp3">
+                <input type="submit" id="submit" value="Update">
             </form>
         </div>
     </div>

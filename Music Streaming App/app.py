@@ -4,8 +4,9 @@ from api.user_resource import new_acc
 from api.song_resource import Todo
 from api.playlist_resource import create_play
 from api.album_resource import new_album
+from api.upload_resource import upload_put
 from models import db, login, songs, albums, ratings, playlists, playlist_songs, album_songs
-
+import requests
 
 app = Flask(__name__)
 api = Api(app)
@@ -179,14 +180,44 @@ def get_songs_by_album(username, album_id):
 
     return render_template('album.html', album_songs=album_songs, username=username, album_name=album_name)
 
+@app.route('/<username>/song/<int:song_id>/update', methods = ['GET', 'POST'])
+def update_song(username, song_id):
+    return render_template('update_song.html', username=username, song_id=song_id)
+
+@app.route('/<username>/song/<int:song_id>', methods = ['GET', 'POST'])
+def update_song_puter(username, song_id):
+    if request.method=="POST":
+        form_data = request.form
+        file_data = request.files
+        print(form_data)
+        print(file_data)
+        put_data ={}
+        for key, value in form_data.items():
+            put_data[key] = value
+        files = {}
+        for key, file in file_data.items():
+            files[key] = (file.filename, file)
+            put_data[key] = file.filename
+            
+        if len(files) != 0:
+            req = requests.post(f"http://127.0.0.1:5000/files/upload", files=files)
+        if req.status_code==200:
+            print("Upload Successful")
+        response = requests.put(f"http://127.0.0.1:5000/api?username={username}&song_id={song_id}", json=put_data)
+        if response.status_code == 200:
+            return "Song pdate Successful"
+
+        return str(response.status_code)
 
 
 
-api.add_resource(Todo, "/<username>/song/upload", endpoint="upload_song")
-api.add_resource(Todo, "/<username>/song/<int:song_id>", endpoint="update_song")
+
+api.add_resource(Todo, "/<username>/song/upload","/api")
 api.add_resource(new_acc, "/signup")
 api.add_resource(create_play, "/playlist/create/<username>")
 api.add_resource(new_album, "/album/create/<username>")
+api.add_resource(upload_put, "/files/upload")
+
 
 
 if __name__ == "__main__":

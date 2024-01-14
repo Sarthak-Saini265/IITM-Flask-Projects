@@ -62,6 +62,10 @@ a:hover {
 
 .song_name {
     color: black;
+    max-height: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-y: auto;
 }
 
 h1{
@@ -84,6 +88,34 @@ h2{
     margin-bottom: -23px;
 }
 
+.update{
+    width: 113px;
+    height: 35px;
+    background-color: #00fc4e;
+    margin-top: 70px;
+    border-radius: 5px;
+}
+
+.delete{
+    width: 112px;
+    height: 35px;
+    background-color: red;
+    margin-top: 70px;
+    border-radius: 5px;
+}
+
+.crud{
+    display: flex;
+    margin-top: 34px;
+}
+
+.update:hover{
+    cursor: pointer;
+}
+
+.delete:hover{
+    cursor: pointer;
+}
 
 
 
