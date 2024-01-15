@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Playlist</title>
+</head>
+<body>
+    <div class="main_div">
+        <div class="upload">
+            <h1 class="head">Update Playlist : {{playlist.name}}</h1>
+            <form action="/{{username}}/playlist/{{playlist.playlist_id}}" method="POST">
+                <input name="name" type="text" placeholder="Name of the playlist", value="{{playlist.name}}">
+                <div><br>
+                    <label>Select Songs: </label>
+                    {% for song in all_songs %}
+                        {% if song.song_id in song_ids %}
+                            <input type="checkbox" name="songs" value= "{{song.song_id}}" checked/>
+                            <label>{{song.name}}</label>
+                        {% else %}
+                            <input type="checkbox" name="songs" value= "{{song.song_id}}"/>
+                            <label>{{song.name}}</label>
+                        {% endif %}
+                    {% endfor %}
+                </div><br>
+                <input type="submit" id="submit" value="Update">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

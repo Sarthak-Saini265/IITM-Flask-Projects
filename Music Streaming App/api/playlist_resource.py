@@ -1,4 +1,4 @@
-from flask_restful import Resource, reqparse, fields, marshal_with
+from flask_restful import Resource, reqparse, fields, marshal_with, abort
 from models import db, login, songs,playlists, playlist_songs
 from flask import request
 
@@ -36,6 +36,40 @@ class create_play(Resource):
         }
         db.session.commit()
         return playlist_data
+    
+    @marshal_with(resource_fields_3)
+    def put(self):
+        username = request.args.get("username")
+        playlist_id = request.args.get("playlist_id")
+
+        if request.method=="PUT":
+            user = login.query.filter_by(username=username).first()
+            if not user:
+                abort(404, message='User does not exist. Could not update')
+
+            playlist = playlists.query.get(playlist_id)
+            if not playlist:
+                abort(404, message='Song does not exist. Could not update')
+            data = request.json
+            print(data)
+            songs_ids = [int(song_id) for song_id in data.get("songs", [])]
+            playlist.name=data["name"]
+            db.session.query(playlist_songs).filter_by(playlist_id=playlist_id).delete()
+
+            for song_id in songs_ids:
+                new_association = playlist_songs(playlist_id=playlist_id, song_id=song_id)
+                db.session.add(new_association)
+
+            db.session.commit()
+            playlist_data = {
+                'name': playlist.name,
+                'songs': data["songs"]
+            }
+            db.session.commit()
+            return playlist_data
+
+    
+
     
 
 

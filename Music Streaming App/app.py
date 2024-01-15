@@ -155,7 +155,7 @@ def get_songs_by_playlist(username, playlist_id):
 
     playlist_songs = playlist.playlist_songs
 
-    return render_template('playlist.html', playlist_songs=playlist_songs, username=username, all_playlists=all_playlists)
+    return render_template('playlist.html', playlist_songs=playlist_songs, username=username, all_playlists=all_playlists, playlist=playlist)
 
 @app.route('/<username>/albums')
 def page(username):
@@ -205,16 +205,47 @@ def update_song_puter(username, song_id):
             print("Upload Successful")
         response = requests.put(f"http://127.0.0.1:5000/api?username={username}&song_id={song_id}", json=put_data)
         if response.status_code == 200:
-            return "Song pdate Successful"
+            return "Song update Successful"
+
+        return str(response.status_code)
+
+
+@app.route('/<username>/playlist/<int:playlist_id>/edit')
+def update_play(username, playlist_id):
+    all_songs = songs.query.all()
+    playlist = playlists.query.get(playlist_id)
+    playlist_songs = playlist.playlist_songs
+    song_ids = []
+    for i in playlist_songs:
+        song_ids.append(i.song.song_id)
+    print(song_ids)
+    return render_template('update_playlist.html', username=username, playlist_id=playlist_id, all_songs=all_songs, song_ids=song_ids, playlist=playlist)
+
+@app.route('/<username>/playlist/<int:playlist_id>', methods=['GET', 'POST'])
+def update_playlist_puter(username, playlist_id):
+    if request.method=="POST":
+        put_data = request.form
+        print(put_data)
+        songs_list = put_data.getlist('songs')
+
+        dic = {
+            'name': put_data['name'],
+            'songs': songs_list
+        }
+        print(dic)
+        response = requests.put(f"http://127.0.0.1:5000/playlist/update?username={username}&playlist_id={playlist_id}", json=dic)
+        if response.status_code == 200:
+            return "Playlist update Successful"
 
         return str(response.status_code)
 
 
 
 
+
 api.add_resource(Todo, "/<username>/song/upload","/api")
 api.add_resource(new_acc, "/signup")
-api.add_resource(create_play, "/playlist/create/<username>")
+api.add_resource(create_play, "/playlist/create/<username>", "/playlist/update")
 api.add_resource(new_album, "/album/create/<username>")
 api.add_resource(upload_put, "/files/upload")
 

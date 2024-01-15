@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/user_page.css">
+    <link rel="stylesheet" href="/static/playlist.css">
     <title>User Page</title>
 </head>
 
@@ -27,7 +27,7 @@
             <a href="/user/{{username}}" class="side_text">
                 <h2 id="home">Home</h2>
             </a>
-            <a href="#" class="side_text">
+            <a href="/user/{{username}}/all_albums" class="side_text">
                 <h2 id="album">Albums</h2>
             </a>
             <a href="#" class="side_text">
@@ -46,12 +46,21 @@
             </div>
         </div>
         <div class="content">
-            {% for song in playlist_songs %}
-                <div class="songs">
-                    <h2 class="song_name">{{song.song.name}}</h2>
-                    <button class="song_play" data-mp3="{{song.song.path}}">Play</button>
-                </div>
-            {% endfor %}
+            <div class="head_edit">
+                <h1>Playlist : {{playlist.name}}</h1>
+                <button class="edit_play">
+                    <a href="/{{username}}/playlist/{{playlist.playlist_id}}/edit">
+                    <img src="/static/edit.png" alt="Edit Icon"></a>
+                </button>
+            </div>
+            <div class="all_songs">
+                {% for song in playlist_songs %}
+                    <div class="songs">
+                        <h2 class="song_name">{{song.song.name}}</h2>
+                        <button class="song_play" data-mp3="{{song.song.path}}">Play</button>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->

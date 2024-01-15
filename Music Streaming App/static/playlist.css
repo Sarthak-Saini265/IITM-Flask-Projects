@@ -176,8 +176,13 @@ h4 {
     margin-top: -911px;
     display: flex;
     justify-content: flex-start;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+}
+
+.all_songs{
+    display: flex;
+    flex-direction: row;
 }
 
 .songs {
@@ -197,7 +202,7 @@ h4 {
 }
 
 .playlists {
-    background-color: white;
+    background-color: black;
     height: 302px;
     width: 174px;
     margin-top: 25px;
@@ -205,11 +210,11 @@ h4 {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .playlist_name{
-    color: black;
+    color: white;
     font-size: 19px;
     font-family: 'Ubuntu', serif;
 }
@@ -218,4 +223,35 @@ h4 {
     color: darkorange;
     text-decoration: underline;
 }
+
+h1{
+    font-family: 'Ubuntu', serif;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    padding-left: 41px;
+    font-size: 36px;
+    margin-bottom: -9px;
+}
+
+.head_edit{
+    display: flex;
+    flex-direction: row;
+    height: 83px;
+}
+
+.edit_play{
+    background: transparent;
+    scale: 8%;
+    margin-left: -212px;
+    margin-top: -34px;
+}
+
+.edit_play:hover{
+    cursor: pointer;
+}
+
+
+
+
 
