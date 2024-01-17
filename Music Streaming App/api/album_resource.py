@@ -1,4 +1,4 @@
-from flask_restful import Resource, reqparse, fields, marshal_with
+from flask_restful import Resource, reqparse, fields, marshal_with, abort
 from models import db, login, songs, albums, album_songs
 from flask import request
 
@@ -44,7 +44,37 @@ class new_album(Resource):
         db.session.commit()
         return album_data
     
+    def put(self):
+        username = request.args.get("username")
+        album_id = request.args.get("album_id")
 
+        if request.method=="PUT":
+            user = login.query.filter_by(username=username).first()
+            if not user:
+                abort(404, message='User does not exist. Could not update')
+
+            album = albums.query.get(album_id)
+            if not album:
+                abort(404, message='Song does not exist. Could not update')
+            data = request.json
+            print(data)
+            songs_ids = [int(song_id) for song_id in data.get("songs", [])]
+            album.name=data["name"]
+            album.artist=data["artist"]
+            album.genre=data["genre"]
+            db.session.query(album_songs).filter_by(album_id=album_id).delete()
+
+            for song_id in songs_ids:
+                new_association = album_songs(album_id=album_id, song_id=song_id)
+                db.session.add(new_association)
+
+            db.session.commit()
+            album_data = {
+                'name': album.name,
+                'songs': data["songs"]
+            }
+            db.session.commit()
+            return album_data
 
 
 

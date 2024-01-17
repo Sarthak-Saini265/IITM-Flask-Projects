@@ -238,15 +238,55 @@ def update_playlist_puter(username, playlist_id):
             return "Playlist update Successful"
 
         return str(response.status_code)
+    
+@app.route('/<username>/album/<int:album_id>/edit')
+def update_album(username, album_id):
+    all_songs = songs.query.all()
+    album = albums.query.get(album_id)
+    album_songs = album.album_songs
+    song_ids = []
+    for i in album_songs:
+        song_ids.append(i.song.song_id)
+    print(song_ids)
+
+    return render_template('update_album.html', all_songs=all_songs, song_ids=song_ids, album_id=album_id, username=username, album=album)
+
+@app.route('/<username>/album/<int:album_id>', methods=['GET', 'POST'])
+def update_album_puter(username, album_id):
+    if request.method=="POST":
+        put_data = request.form
+        print(put_data)
+        songs_list = put_data.getlist('songs')
+
+        dic = {
+            'name': put_data['name'],
+            'artist': put_data['artist'],
+            'genre': put_data['genre'],
+            'songs': songs_list
+        }
+        print(dic)
+        response = requests.put(f"http://127.0.0.1:5000/album/update?username={username}&album_id={album_id}", json=dic)
+        if response.status_code == 200:
+            return "Album update Successful"
+
+        return str(response.status_code)
+
+@app.route('/<username>/song/<int:song_id>/delete')
+def delete_song(username, song_id):
+    response = requests.delete(f"http://127.0.0.1:5000/song/delete?username={username}&song_id={song_id}")
+    if response.status_code == 200:
+            return "Song Deleted Successfully"
+    return str(response.status_code)
+        
+    
 
 
 
 
-
-api.add_resource(Todo, "/<username>/song/upload","/api")
+api.add_resource(Todo, "/<username>/song/upload","/api","/song/delete")
 api.add_resource(new_acc, "/signup")
 api.add_resource(create_play, "/playlist/create/<username>", "/playlist/update")
-api.add_resource(new_album, "/album/create/<username>")
+api.add_resource(new_album, "/album/create/<username>", "/album/update")
 api.add_resource(upload_put, "/files/upload")
 
 

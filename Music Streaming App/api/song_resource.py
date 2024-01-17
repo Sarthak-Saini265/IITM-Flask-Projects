@@ -81,5 +81,15 @@ class Todo(Resource):
         return updated_data
     
 
+    def delete(self):
+        song_id = request.args.get("song_id")
+        song = songs.query.filter_by(song_id=song_id).first()
+        if not song:
+            abort('This Song does not exist. Could Not Delete')
+        db.session.delete(song)
+        db.session.commit()
+
+        return "Song Deleted Successfully"
+
 
 
