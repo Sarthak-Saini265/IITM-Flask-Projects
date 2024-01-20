@@ -68,8 +68,19 @@ class create_play(Resource):
             db.session.commit()
             return playlist_data
 
-    
-
+    def delete(self):
+        playlist_id = request.args.get("playlist_id")
+        playlist = playlists.query.filter_by(playlist_id=playlist_id).first()
+        print(playlist)
+        if not playlist:
+            abort('This Playlist does not exist. Could Not Delete')
+        db.session.delete(playlist)
+        playl_songs = playlist_songs.query.filter_by(playlist_id=playlist_id)
+        print(list(playl_songs))
+        for song in playl_songs:
+            db.session.delete(song)
+        db.session.commit()
+        return "Playlist Deleted Successfully"
     
 
 

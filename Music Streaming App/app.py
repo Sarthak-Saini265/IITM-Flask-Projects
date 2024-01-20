@@ -5,6 +5,7 @@ from api.song_resource import Todo
 from api.playlist_resource import create_play
 from api.album_resource import new_album
 from api.upload_resource import upload_put
+from api.ratings_resource import new_rating
 from models import db, login, songs, albums, ratings, playlists, playlist_songs, album_songs
 import requests
 
@@ -278,16 +279,37 @@ def delete_song(username, song_id):
             return "Song Deleted Successfully"
     return str(response.status_code)
         
-    
+@app.route('/<username>/playlist/<int:playlist_id>/delete')
+def delete_playlist(username, playlist_id):
+    response = requests.delete(f"http://127.0.0.1:5000/playlist/delete?username={username}&playlist_id={playlist_id}")
+    if response.status_code == 200:
+            return "Playlist Deleted Successfully"
+    return str(response.status_code)
+
+@app.route('/<username>/album/<int:album_id>/delete')
+def delete_album(username, album_id):
+    response = requests.delete(f"http://127.0.0.1:5000/album/delete?username={username}&album_id={album_id}")
+    if response.status_code == 200:
+            return "Album Deleted Successfully"
+    return str(response.status_code)
+
+
+@app.route('/<username>/song/<int:song_id>/rating/<int:rating_given>')
+def post_rating(username, song_id, rating_given):
+    response = requests.post(f"http://127.0.0.1:5000/api/rating/post?username={username}&song_id={song_id}&rating_given={rating_given}")
+    if response.status_code == 200:
+            return "Rating Posted Successfully"
+    return str(response.status_code)
 
 
 
 
 api.add_resource(Todo, "/<username>/song/upload","/api","/song/delete")
 api.add_resource(new_acc, "/signup")
-api.add_resource(create_play, "/playlist/create/<username>", "/playlist/update")
-api.add_resource(new_album, "/album/create/<username>", "/album/update")
+api.add_resource(create_play, "/playlist/create/<username>", "/playlist/update", "/playlist/delete")
+api.add_resource(new_album, "/album/create/<username>", "/album/update", "/album/delete")
 api.add_resource(upload_put, "/files/upload")
+api.add_resource(new_rating, "/api/rating/post")
 
 
 

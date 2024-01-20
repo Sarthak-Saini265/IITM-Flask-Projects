@@ -34,7 +34,7 @@ class albums(db.Model):
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
 
     def __repr__(self):
-        return f"{self.song_id}-{self.name} {self.duration} {self.date_created}"   
+        return f"{self.album_id}-{self.name} {self.artist} {self.date_created}"   
     
 class ratings(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('login.user_id'), primary_key=True)

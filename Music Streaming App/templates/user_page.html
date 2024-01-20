@@ -50,7 +50,18 @@
                 <div class="songs">
                     <h3 class="song_name">{{song.name}}</h3>
                     <button class="song_play" data-mp3="{{song.path}}">Play</button>
-                    <button class="song_pause" data-mp3="{{song.path}}">Pause</button>
+                    <label for="song_rating">Choose a Rating:</label>
+                    <select name="rating" class="ratings" id="song_rating" onchange="handleRatingChange(this, '{{song.path}}', '{{song.song_id}}', '{{username}}')">
+                        <option value="select">Select a Rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+
+                    <!-- <button class="song_pause" data-mp3="{{song.path}}">Pause</button> -->
                 </div>
             {% endfor %}
         </div>
@@ -58,6 +69,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
     <script src="/static/rgb_button.js"></script>
     <script src="/static/song_play.js"></script>
+    <script src="/static/rating.js"></script>
     <!-- <script src="/static/playlist.js"></script> -->
 </body>
 

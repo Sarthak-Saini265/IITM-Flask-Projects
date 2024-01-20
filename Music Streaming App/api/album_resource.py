@@ -77,5 +77,19 @@ class new_album(Resource):
             return album_data
 
 
+    def delete(self):
+        album_id = request.args.get("album_id")
+        album = albums.query.filter_by(album_id=album_id).first()
+        print(album)
+        if not album:
+            abort('This album does not exist. Could Not Delete')
+        db.session.delete(album)
+        alb_songs = album_songs.query.filter_by(album_id=album_id)
+        print(list(alb_songs))
+        for song in alb_songs:
+            db.session.delete(song)
+        db.session.commit()
+        return "Album Deleted Successfully"
+
 
 
