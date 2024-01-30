@@ -128,8 +128,10 @@ def user_page(username):
     all_songs = songs.query.all()
     all_playlists = playlists.query.all()
     user = login.query.filter_by(username=username, acc_type='General').first()
+    rating = ratings.query.filter_by(user_id=user.user_id).all()
+    print(rating[0].rating)
     if user and user.acc_type == 'General':
-        return render_template('user_page.html', username=username, all_songs=all_songs, all_playlists=all_playlists)
+        return render_template('user_page.html', username=username, all_songs=all_songs, all_playlists=all_playlists, rating=rating)
     else:
         return 'User not Found'
 
@@ -183,7 +185,8 @@ def get_songs_by_album(username, album_id):
 
 @app.route('/<username>/song/<int:song_id>/update', methods = ['GET', 'POST'])
 def update_song(username, song_id):
-    return render_template('update_song.html', username=username, song_id=song_id)
+    song = songs.query.filter_by(song_id=song_id).first()
+    return render_template('update_song.html', username=username, song_id=song_id, song=song)
 
 @app.route('/<username>/song/<int:song_id>', methods = ['GET', 'POST'])
 def update_song_puter(username, song_id):
@@ -296,10 +299,22 @@ def delete_album(username, album_id):
 
 @app.route('/<username>/song/<int:song_id>/rating/<int:rating_given>')
 def post_rating(username, song_id, rating_given):
-    response = requests.post(f"http://127.0.0.1:5000/api/rating/post?username={username}&song_id={song_id}&rating_given={rating_given}")
-    if response.status_code == 200:
+    user = login.query.filter_by(username=username).first()
+    user_id = user.user_id
+    rating  = ratings.query.filter_by(song_id=song_id, user_id=user_id).first()
+    if not rating:
+        response = requests.post(f"http://127.0.0.1:5000/api/rating?username={username}&song_id={song_id}&rating_given={rating_given}")
+        if response.status_code == 200:
             return "Rating Posted Successfully"
-    return str(response.status_code)
+        return str(response.status_code)
+    else:
+        response = requests.put(f"http://127.0.0.1:5000/api/rating?username={username}&song_id={song_id}&rating_given={rating_given}")
+        if response.status_code == 200:
+                return "Rating Updated Successfully"
+        return str(response.status_code)
+        
+
+
 
 
 
@@ -309,7 +324,7 @@ api.add_resource(new_acc, "/signup")
 api.add_resource(create_play, "/playlist/create/<username>", "/playlist/update", "/playlist/delete")
 api.add_resource(new_album, "/album/create/<username>", "/album/update", "/album/delete")
 api.add_resource(upload_put, "/files/upload")
-api.add_resource(new_rating, "/api/rating/post")
+api.add_resource(new_rating, "/api/rating")
 
 
 

@@ -21,7 +21,34 @@ class new_rating(Resource):
             rating = ratings(user_id=user.user_id, song_id=song_id, rating=rating_given)
             db.session.add(rating)
             db.session.commit()
-            return f'Rating - {rating_given} given to Song - {song.name}'
+            rating_data = {
+                'username': username,
+                'song': song.name,
+                'rating': rating_given,
+            }
+            return rating_data
+        
+
+
+    def put(self):
+        username = request.args.get("username")
+        song_id = request.args.get("song_id")
+        user = login.query.filter_by(username=username).first()
+        song = songs.query.filter_by(song_id=song_id).first()
+        user_id = user.user_id
+        rating_given = request.args.get("rating_given")
+
+        if request.method == "PUT":
+            old_rating = ratings.query.filter_by(song_id=song_id, user_id=user_id).first()
+            old_rating.rating = rating_given
+            db.session.commit()
+            rating_data = {
+                'username': username,
+                'song': song.name,
+                'rating': rating_given,
+            }
+            return rating_data
+
     
 
 

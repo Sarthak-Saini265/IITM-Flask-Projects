@@ -222,6 +222,7 @@ h4 {
     color: white;
     font-size: 19px;
     font-family: 'Ubuntu', serif;
+    margin-top: 12px;
 }
 
 .playlist_name:hover{

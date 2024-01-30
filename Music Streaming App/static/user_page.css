@@ -168,35 +168,73 @@ h4 {
     margin-right: -715px;
 }
 
+
 .content {
-    background-color: green;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(/static/user_page_test_1.jpg);
+    /* background-color: rgba(0, 0, 0, 1); */
+    position: absolute;
+    background-size: cover;
     height: 100vh;
     width: 90.85%;
     margin-left: 189px;
     margin-top: -911px;
     display: flex;
-    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-.songs {
+
+/* .songs {
     height: 235px;
     width: 225px;
-    background-color: white;
+    background-color: black;
     margin-top: 55px;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-left: 45px;
+} */
+
+.songs {
+    height: 233px;
+    width: 257px;
+    background-color: rgba(0, 0, 0, 0.75);
+    margin-top: 11px;
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.23s ease-in-out;
 }
 
+
+.songs:hover {
+    background-color: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+}
+
+.all_songs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 371px;
+    margin-top: 34px;
+}
+
+
 .song_name {
-    color: black;
+    color: white;
     font-family: 'Poppins', serif;
     letter-spacing: 1px;
-    font-size: 25px;
+    font-size: 20px;
+    padding-left: 20px;
+    height: 60px;
+    padding-right: 17px;
 }
 
 .playlists {
@@ -211,14 +249,58 @@ h4 {
     justify-content: flex-start;
 }
 
-.playlist_name{
+.playlist_name {
     color: white;
     font-size: 19px;
     font-family: 'Ubuntu', serif;
+    margin-top: 12px;
 }
 
-.playlist_name:hover{
+.playlist_name:hover {
     color: darkorange;
     text-decoration: underline;
 }
+
+.song_play {
+    background-color: rgba(128, 128, 128, 0.3);
+    color: white;
+    border: none;
+    padding: 11px;
+    padding-right: 6px;
+    font-size: 17px;
+    /* box-shadow: 0 2px 4px darkslategray; */
+    border-radius: 48%;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    width: 57px;
+    height: 55px;
+    font-family: 'Ubuntu', serif;
+    font-size: 27px;
+}
+
+.song_play:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.except_name {
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+    width: 10em;
+    align-items: center;
+    margin-bottom: 23px;
+}
+
+
+
+#choose_rating {
+    color: white;
+    font-family: 'Ubuntu', serif;
+    margin-bottom: 10px;
+}
+
+
+
 

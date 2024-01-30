@@ -18,7 +18,7 @@
         <div class="upload">
             <h1 class="head">Update Song</h1>
             <form action="/{{username}}/song/{{song_id}}" method="POST" enctype="multipart/form-data">
-                <input type="text" name="name" placeholder="Updated Name" id="song_name">
+                <input type="text" name="name" placeholder="Updated Name" id="song_name" value="{{song.name}}">
                 <!-- <label for="file">Choose a file:</label> -->
                 <br>
                 <span class="choose_span">Choose a Lyrics File(.txt)</span><input type="file" name="txt" id="file" accept=".txt">

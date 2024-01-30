@@ -169,36 +169,51 @@ h4 {
 }
 
 .content {
-    background-color: green;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(/static/user_page_test_3.jpg);
+    background-color: rgba(0, 0, 0, 1);
+    background-size: cover;
     height: 100vh;
     width: 90.85%;
     margin-left: 189px;
     margin-top: -911px;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
-.all_songs{
-    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: space-between;
 }
 
 .songs {
-    height: 235px;
-    width: 225px;
-    background-color: white;
-    margin-top: 55px;
-    border-radius: 14px;
+    height: 48px;
+    width: 100%;
+    background-color: black;
+    margin-top: 4px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: -2px;
+    justify-content: space-between;
+}
+
+.songs:hover {
+    background-color: rgba(0, 0, 0, 0.883);
+    cursor: pointer;
+}
+
+.all_songs {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-left: 45px;
+    width: 100%;
+    margin-bottom: 150px;
 }
 
 .song_name {
-    color: black;
+    color: white;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+    font-size: 20px;
+    padding-left: 20px;
 }
 
 .playlists {
@@ -223,6 +238,42 @@ h4 {
     color: darkorange;
     text-decoration: underline;
 }
+
+.song_play {
+    background-color: rgba(128, 128, 128, 0.3);
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 17px;
+    /* box-shadow: 0 2px 4px darkslategray; */
+    border-radius: 48%;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    width: 46px;
+    height: 38px;
+    font-family: 'Ubuntu', serif;
+}
+
+.song_play:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.except_name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 25px;
+    width: 20em;
+    justify-content: space-evenly;
+}
+
+#choose_rating {
+    color: white;
+    font-family: 'Ubuntu', serif;
+}
+
 
 h1{
     font-family: 'Ubuntu', serif;

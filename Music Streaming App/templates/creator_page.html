@@ -27,16 +27,21 @@
         <h1>Welcome {{username}}</h1><br>
         <h2 id="heading_text">Your Uploaded songs :</h2>
         <div class="uploaded">
-            {% for song in uploaded_songs %}
-            <div class="songs">
-                <h2 class="song_name">{{song.name}}</h2>
-                <button class="song_play" data-mp3="{{song.path}}">Play</button>
-                <div class="crud">
-                    <button class="update">✎</button>
-                    <button class="delete">🗑</button>
+            <div class="all_songs">
+
+                {% for song in uploaded_songs %}
+                <div class="songs">
+                    <h2 class="song_name">{{song.name}}</h2>
+                    <div class="except_name">  
+                        <button class="song_play" data-mp3="{{song.path}}">▶</button>
+                        <div class="crud">
+                            <a href="/{{username}}/song/{{song.song_id}}/update"><button class="update">✎</button></a>
+                            <a href="/{{username}}/song/{{song.song_id}}/delete"><button class="delete">🗑</button></a>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
     <script src="/static/song_play.js"></script>

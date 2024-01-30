@@ -56,8 +56,19 @@
             <div class="all_songs">
                 {% for song in playlist_songs %}
                     <div class="songs">
-                        <h2 class="song_name">{{song.song.name}}</h2>
-                        <button class="song_play" data-mp3="{{song.song.path}}">Play</button>
+                        <h3 class="song_name">{{song.song.name}}</h3>
+                        <div class="except_name">
+                            <button class="song_play" data-mp3="{{song.song.path}}">▶</button><br>
+                            <label for="song_rating" id="choose_rating">Choose a Rating:</label>
+                            <select name="rating" class="ratings" id="song_rating" onchange="handleRatingChange(this, '{{song.song.path}}', '{{song.song.song_id}}', '{{username}}')">
+                                <option value="select">Select a Rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
