@@ -16,7 +16,15 @@
         <div class="img_div">
             <h1>Welcome to SoundSphere</h1>
             <div class="signin">
-                <h3>Sign In</h3>
+                <div class="login_choose">
+                    <a href="/" class="user_link">
+                        <center><h3>User</h3></center>
+                    </a>
+                    <!-- <div class="slash"></div> -->
+                    <a href="/creator" class="creator_link">
+                        <center><h3>Creator</h3></center>
+                    </a>
+                </div>
                 <form action="/signin" method="POST">
                     <input type="text" name="username"  placeholder="Username" id="user">
                     <input type="password" name="password"  placeholder="Password" id="pass">

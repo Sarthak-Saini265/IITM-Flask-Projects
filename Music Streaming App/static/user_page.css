@@ -175,7 +175,7 @@ h4 {
     position: absolute;
     background-size: cover;
     height: 100vh;
-    width: 90.85%;
+    width: 90%;
     margin-left: 189px;
     margin-top: -911px;
     display: flex;
@@ -196,6 +196,39 @@ h4 {
     align-items: center;
     margin-left: 45px;
 } */
+
+.music_player{
+    height: 80px;
+    width: 100%;
+    font-size: 45px;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    /* margin-top: -62px; */
+    bottom: 0;
+    position: fixed;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.player{
+    display: flex;
+    flex-direction: row;
+}
+
+.player button{
+    color: white;
+    background: transparent;
+    font-size: 33px;
+}
+
+.player button:hover{
+    cursor: pointer;
+}
+
+.song_loc h5{
+    color: white;
+}
 
 .songs {
     height: 233px;
