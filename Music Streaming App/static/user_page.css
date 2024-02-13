@@ -197,38 +197,65 @@ h4 {
     margin-left: 45px;
 } */
 
-.music_player{
+.music_player {
     height: 80px;
-    width: 100%;
+    width: 90%;
     font-size: 45px;
     background-color: rgba(0, 0, 0, 0.55);
     display: flex;
-    /* margin-top: -62px; */
     bottom: 0;
     position: fixed;
     align-items: center;
     flex-direction: row;
-    justify-content: space-evenly;
 }
 
-.player{
+.player {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
-.player button{
+.player button {
     color: white;
-    background: transparent;
+    background-color: transparent;
+    border: none;
     font-size: 33px;
 }
 
-.player button:hover{
+.player button:hover {
     cursor: pointer;
 }
 
-.song_loc h5{
-    color: white;
+
+.song_loc {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+    float: left;
+    margin-left: 12px;
+    margin-top: -30px;
+    align-items: flex-start;
 }
+
+.song_loc h5 {
+    color: white;
+    margin-bottom: -50px;
+    font-family: 'Poppins', serif;
+    margin-bottom: -48px;
+    font-size: 22px;
+    letter-spacing: 1.2px;
+}
+
+.song_loc h6 {
+    color: gray;
+    font-family: 'Poppins', serif;
+    font-size: 18px;
+    letter-spacing: 1.2px;
+}
+
+
 
 .songs {
     height: 233px;
@@ -333,7 +360,3 @@ h4 {
     font-family: 'Ubuntu', serif;
     margin-bottom: 10px;
 }
-
-
-
-
