@@ -19,11 +19,13 @@
             <h1 class="head">Update Song</h1>
             <form action="/{{username}}/song/{{song_id}}" method="POST" enctype="multipart/form-data">
                 <input type="text" name="name" placeholder="Updated Name" id="song_name" value="{{song.name}}">
+                <input type="text" name="artist" placeholder="Artist Name" id="artist_name" value="{{song.artist}}">
+                <input type="text" name="genre" placeholder="Genre" id="song_genre" value="{{song.genre}}">
                 <!-- <label for="file">Choose a file:</label> -->
                 <br>
-                <span class="choose_span">Choose a Lyrics File(.txt)</span><input type="file" name="txt" id="file" accept=".txt">
+                <span class="choose_span">Choose a Lyrics File(.txt)</span><input type="file" name="txt" class="file" accept=".txt">
                 <br>
-                <span class="choose_span">Choose a Mp3 File</span><input type="file" name="file" id="file" accept=".mp3">
+                <span class="choose_span">Choose a Mp3 File</span><input type="file" name="file" class="file" accept=".mp3">
                 <input type="submit" id="submit" value="Update">
             </form>
         </div>

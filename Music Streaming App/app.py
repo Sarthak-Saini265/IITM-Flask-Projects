@@ -129,7 +129,7 @@ def user_page(username):
     all_playlists = playlists.query.all()
     user = login.query.filter_by(username=username, acc_type='General').first()
     rating = ratings.query.filter_by(user_id=user.user_id).all()
-    print(rating[0].rating)
+    # print(rating[0].rating)
     if user and user.acc_type == 'General':
         return render_template('user_page.html', username=username, all_songs=all_songs, all_playlists=all_playlists, rating=rating)
     else:

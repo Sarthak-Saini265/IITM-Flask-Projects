@@ -1,6 +1,7 @@
 let buttons = document.getElementsByClassName('song_play');
 let bar_sname = document.getElementById('name-song')
 let play_button = document.getElementById('play_button')
+let artist_name = document.getElementById('artist_name')
 // let pause_buttons = document.getElementsByClassName('song_pause');
 let audio = new Audio();
 let isPlaying = false;
@@ -21,8 +22,10 @@ play_button.addEventListener('click', playPause);
 function play(event) {
     let path = event.currentTarget.getAttribute('data-mp3');
     let name = event.currentTarget.getAttribute('name-mp3');
+    let artist = event.currentTarget.getAttribute('artist-mp3');
     audio.src = '/static' + path;
     bar_sname.innerHTML = name;
+    artist_name.innerHTML = artist;
 
     // Pause if currently playing the same song
     if (!audio.paused && audio.src === audio.src) {

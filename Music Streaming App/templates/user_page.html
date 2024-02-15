@@ -52,7 +52,7 @@
                 <div class="songs">
                     <h3 class="song_name">{{song.name}}</h3>
                     <div class="except_name">
-                        <button class="song_play" data-mp3="{{song.path}}" name-mp3="{{song.name}}">▶</button><br>
+                        <button class="song_play" data-mp3="{{song.path}}" name-mp3="{{song.name}}" artist-mp3="{{song.artist}}">▶</button><br>
                         <label for="song_rating" id="choose_rating">Choose a Rating:</label>
                         <select name="rating" class="ratings" id="song_rating" onchange="handleRatingChange(this, '{{song.path}}', '{{song.song_id}}', '{{username}}')">
                             <option value="select">Select a Rating</option>
@@ -73,7 +73,7 @@
             <div class="music_player">
                 <div class="song_loc">
                     <h5 id="name-song">Nothing Playing Right Now!</h5>
-                    <h6 id="artist_name">SID</h6>
+                    <h6 id="artist_name"></h6>
                 </div>
                 <div class="player">
                     <button>⏮</button>

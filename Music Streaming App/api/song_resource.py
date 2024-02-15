@@ -33,8 +33,10 @@ class Todo(Resource):
         audio = MP3(file_path)
         duration = audio.info.length
         name = request.form['name']
+        artist = request.form['artist']
+        genre = request.form['genre']
         creator_id = user.user_id
-        song = songs(creator_id = creator_id,name = name, lyrics = lyrics_content, duration = format_duration(duration), path=f'/uploads/{file.filename}')
+        song = songs(creator_id = creator_id,name = name, lyrics = lyrics_content, duration = format_duration(duration), artist =artist, genre=genre, uploaded_by=username, path=f'/uploads/{file.filename}')
         db.session.add(song)
         db.session.commit()
         return f'Song Name - {name}\nUploaded Successfully'
@@ -57,6 +59,10 @@ class Todo(Resource):
             print(data)
             if "name" in data:
                 song.name = data["name"]
+            if "artist" in data:
+                song.artist = data["artist"]
+            if "genre" in data:
+                song.genre = data["genre"]
             if "txt" in data and data["txt"] != "":
                 with open(f'static/lyrics/{data["txt"]}', 'r', encoding='utf-8') as file_r:
                     lyrics_content = file_r.read()

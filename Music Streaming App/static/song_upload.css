@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     width: 25%;
-    height: 50%;
+    height: 68.5%;
     justify-content: flex-start;
     align-items: center;
     border: 2px solid #ffc800;
@@ -27,9 +27,11 @@
     margin-top: 8em;
 }
 
-#song_name {
+#song_name,
+#artist_name,
+#song_genre {
     height: 65px;
-    width: 65%;
+    width: 73%;
     font-family: 'Ubuntu', sans-serif;
     font-size: 21px;
     background-color: rgba(0, 0, 0, 0.25);
@@ -40,43 +42,46 @@
     padding-left: 20px;
 }
 
-#song_name::placeholder {
+#song_name::placeholder,
+#artist_name::placeholder,
+#song_genre::placeholder {
     color: rgb(249, 244, 244);
     font-size: 19.5px;
     letter-spacing: 0.07em;
 }
 
-#song_name:focus {
+#song_name:focus,
+#artist_name:focus,
+#song_genre:focus {
     border: 2.5px solid white;
     outline: none;
 }
 
-#file {
+.file {
     height: 45px;
     width: 52%;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 21px;
+    font-size: 18px;
     /* background-color: rgba(0, 0, 0, 0.25); */
     /* border: 2.5px solid #d0440b; */
     /* border-radius: 10px; */
-    margin-bottom: 1rem;
-    color: white;   
+    color: white;
 }
 
-#file::placeholder {
+.file::placeholder {
     color: rgb(249, 244, 244);
     font-size: 19.5px;
     letter-spacing: 0.07em;
 }
 
-#file:focus {
+.file:focus {
     border: 2.5px solid white;
     outline: none;
 }
 
 #submit {
     display: block;
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0, 0, 0, 0.35);
     width: 88px;
     height: 40px;
     /* font-family: 'Poppins', serif; */
@@ -103,17 +108,15 @@
 }
 
 form {
-    margin-right: -155px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-.choose_span{
+.choose_span {
     font-family: 'Ubuntu', serif;
     color: white;
+    margin-top: -21px;
+    margin-bottom: 3px;
 }
-
-
-
-
-
-
-
