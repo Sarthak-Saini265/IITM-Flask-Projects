@@ -52,7 +52,8 @@
                 <div class="songs">
                     {% if song.name|length>16 %}
                         <h3 class="song_h3 song_name">{{song.name}}</h3>
-                        <marquee direction="left" scrollamount="5" class="song_marquee song_name">{{song.name}}</marquee>
+                        <marquee direction="left" scrollamount="5" class="song_marquee song_name" 
+                        {% if song_playing == song.song_id %}style="display: block;"{% endif %}>{{song.name}}>{{song.name}}</marquee>
                     {% else %}
                         <h3 class="song_name">{{song.name}}</h3>
                     {% endif %}

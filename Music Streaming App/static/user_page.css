@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.hidden{
+    display: none;
+}
+
 h2 {
     color: white;
     font-size: 36px;
@@ -198,6 +202,8 @@ h4 {
     margin-left: 45px;
 } */
 
+
+
 .music_player {
     height: 80px;
     width: 90%;
@@ -340,6 +346,24 @@ h4 {
 }
 
 .songs:hover .song_h3 {
+    display: none;
+}
+
+.songs.active {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+.songs.active:hover {
+    cursor: pointer;
+}
+
+/* Add these styles to show the marquee when the song is active */
+.songs.active .song_marquee {
+    display: block;
+}
+
+
+.songs.active .song_h3 {
     display: none;
 }
 
