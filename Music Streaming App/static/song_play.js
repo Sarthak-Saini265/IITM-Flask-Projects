@@ -10,10 +10,18 @@ let isPlaying = false;
 function playPause() {
     if (audio.paused) {
         audio.play();
-        play_button.innerHTML = '▐▐';
+        play_button.style.backgroundImage = `url('/static/pause-button-png-2965dddddddddddd8.png')`;
+        play_button.style.height = '50px'
+        play_button.style.width = '50px'
+        play_button.style.marginLeft = '0px'
+        play_button.style.marginRight = '0px'
     } else {
         audio.pause();
-        play_button.innerHTML = '▶';
+        play_button.style.backgroundImage = `url('/static/play-button-282dddd57.png')`;
+        play_button.style.height = '68px'
+        play_button.style.width = '68px'
+        play_button.style.marginLeft = '-8px'
+        play_button.style.marginRight = '-8px'
     }
 }
 
@@ -30,10 +38,18 @@ function play(event) {
     // Pause if currently playing the same song
     if (!audio.paused && audio.src === audio.src) {
         audio.pause();
-        play_button.innerHTML = '▶';
+        play_button.style.backgroundImage = `url('/static/play-button-282dddd57.png')`;
+        play_button.style.height = '68px'
+        play_button.style.width = '68px'
+        play_button.style.marginLeft = '-8px'
+        play_button.style.marginRight = '-8px'
     } else {
         audio.play();
-        play_button.innerHTML = '▐▐';
+        play_button.style.backgroundImage = `url('/static/pause-button-png-2965dddddddddddd8.png')`;
+        play_button.style.height = '50px'
+        play_button.style.width = '50px'
+        play_button.style.marginLeft = '0px'
+        play_button.style.marginRight = '0px'
     }
 }
 
