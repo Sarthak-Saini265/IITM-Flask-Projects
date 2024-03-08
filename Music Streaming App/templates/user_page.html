@@ -47,18 +47,17 @@
         </div>
         <div class="content">
             <div class="all_songs">
-
                 {% for song in all_songs %}
                 <div class="songs">
                     {% if song.name|length>16 %}
                         <h3 class="song_h3 song_name">{{song.name}}</h3>
                         <marquee direction="left" scrollamount="5" class="song_marquee song_name" 
-                        {% if song_playing == song.song_id %}style="display: block;"{% endif %}>{{song.name}}>{{song.name}}</marquee>
+                        {% if song_playing == song.song_id %}style="display: block;"{% endif %}>{{song.name}}</marquee>
                     {% else %}
                         <h3 class="song_name">{{song.name}}</h3>
                     {% endif %}
                     <div class="except_name">
-                        <button class="song_play" data-mp3="{{song.path}}" name-mp3="{{song.name}}" artist-mp3="{{song.artist}}">▶</button><br>
+                        <button class="song_play" data-mp3="{{song.path}}" name-mp3="{{song.name}}" artist-mp3="{{song.artist}}" lyr-mp3="{{song.lyrics}}">▶</button><br>
                         <label for="song_rating" id="choose_rating">Choose a Rating:</label>
                         <select name="rating" class="ratings" id="song_rating"
                             onchange="handleRatingChange(this, '{{song.path}}', '{{song.song_id}}', '{{username}}')">
@@ -77,6 +76,7 @@
                 </div>
                 {% endfor %}
             </div>
+            <div id="lyrics_div"></div>
             <div class="music_player">
                 <div class="song_loc">
                     <h5 id="name-song">Nothing Playing Right Now!</h5>
@@ -87,6 +87,7 @@
                     <button id="play_button"></button>
                     <button id="seek"></button>
                 </div>
+                <button id="lyrics">Lyrics</button>
             </div>
         </div>
     </div>
@@ -95,6 +96,7 @@
     <script src="/static/song_play.js"></script>
     <script src="/static/rating.js"></script>
     <script src="/static/user_page_song_name.js"></script>
+    <script src="/static/lyrics.js"></script>
     <!-- <script src="/static/background.js"></script> -->
     <!-- <script src="/static/playlist.js"></script> -->
 </body>

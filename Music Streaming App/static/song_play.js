@@ -5,7 +5,12 @@ let artist_name = document.getElementById('artist_name')
 // let pause_buttons = document.getElementsByClassName('song_pause');
 let audio = new Audio();
 let isPlaying = false;
+rewind = document.getElementById('rewind')
+seek = document.getElementById('seek')
+let song_lyr_div = document.getElementById('lyrics_div')
 // console.log('Script Loaded')
+
+
 
 function playPause() {
     if (audio.paused) {
@@ -46,9 +51,11 @@ function play(event) {
     let path = event.currentTarget.getAttribute('data-mp3');
     let name = event.currentTarget.getAttribute('name-mp3');
     let artist = event.currentTarget.getAttribute('artist-mp3');
+    let lyrics = event.currentTarget.getAttribute('lyr-mp3');
     audio.src = '/static' + path;
     bar_sname.innerHTML = name;
     artist_name.innerHTML = artist;
+    song_lyr_div.innerHTML = lyrics;
 
     // Pause if currently playing the same song
     if (!audio.paused && audio.src === audio.src) {
@@ -69,6 +76,19 @@ function play(event) {
         play_button.style.marginRight = '0px'
     }
 }
+
+function rewind_(){
+    let current = audio.currentTime;
+    audio.currentTime = current - 10; 
+}
+
+function seek_(){
+    let current = audio.currentTime;
+    audio.currentTime = current + 10;
+}
+
+seek.addEventListener('click', seek_);
+rewind.addEventListener('click', rewind_);
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', play);
