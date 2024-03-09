@@ -178,10 +178,10 @@ h4 {
     width: 56vh;
     margin: auto;
     margin-top: -771px;
-    background-color: rgba(0, 0, 0, 0.72);
+    background-color: gainsboro;
     border-radius: 12px;
     display: none;
-    color: white;
+    color: black;
     z-index: 5;
     padding: 15px;
     font-family: 'Ubuntu', serif;
@@ -201,6 +201,16 @@ h4 {
     font-weight: bold;
     letter-spacing: 0.9px;
     cursor: pointer;
+}
+
+#overlay {
+    height: 83.9vh;
+    width: 107rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2;
+    margin: auto;
+    display: none;
+    position: fixed;
 }
 
 .content {
