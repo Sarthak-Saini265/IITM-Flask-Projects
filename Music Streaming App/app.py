@@ -88,7 +88,7 @@ def create_account():
     
 @app.route('/creator')
 def creator():
-    return render_template('creator_login.html')
+    return render_template('index_creator.html')
 
 @app.route('/creator/signin', methods=['POST'])
 def creator_signin():
@@ -99,7 +99,7 @@ def creator_signin():
         if password == user.password:
             return redirect(f'/creator/{username}')
         else:
-            return render_template('creator_login.html', trigger_js=True)
+            return render_template('index_creator.html', trigger_js=True)
     else:
         add = login(username=username, password=password, acc_type='Creator')
         db.session.add(add)

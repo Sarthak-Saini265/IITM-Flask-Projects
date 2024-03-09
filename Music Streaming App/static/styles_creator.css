@@ -37,7 +37,6 @@ span {
     flex-direction: column;
     justify-content: center;
     height: 90px;
-    background-color: rgb(221, 32, 180);
     border-radius: 10px;
 }
 
@@ -49,9 +48,10 @@ span {
     justify-content: center;
     height: 90px;
     border-radius: 10px;
+    background-color: rgb(221, 32, 180);
 }
 
-.creator_link:hover {
+.user_link:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }
 

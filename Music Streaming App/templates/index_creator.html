@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="/static/styles_creator.css">
     <title>SoundSphere</title>
 </head>
 <body>
@@ -26,14 +26,13 @@
                         <center><h3>Creator</h3></center>
                     </a>
                 </div>
-                <form action="/signin" method="POST">
+                <form action="/creator/signin" method="POST">
                     <input type="text" name="username"  placeholder="Username" id="user">
                     <input type="password" name="password"  placeholder="Password" id="pass">
                     <input type="submit" id="signin" value="Sign In">
                 </form>
                 <!-- <button id="music">Play</button> -->
                 <br>
-                <span>Don't have an account? <a href="/create_account">Sign Up</a></span>
             </div>
         </div>
     </div>
@@ -42,14 +41,6 @@
             alert('Wrong Password')
             let password = document.getElementById('pass')
             password.style.borderColor = 'red';
-        </script>
-    {% endif %}
-
-    {% if trigger_js_2 %}
-        <script>
-            alert('User Not Found')
-            let username = document.getElementById('user')
-            username.style.borderColor = 'red';
         </script>
     {% endif %}
 </body>
