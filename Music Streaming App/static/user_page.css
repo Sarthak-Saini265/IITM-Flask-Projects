@@ -173,45 +173,7 @@ h4 {
     margin-right: -715px;
 }
 
-#lyrics_div {
-    height: 78vh;
-    width: 56vh;
-    margin: auto;
-    margin-top: -771px;
-    background-color: gainsboro;
-    border-radius: 12px;
-    display: none;
-    color: black;
-    z-index: 5;
-    padding: 15px;
-    font-family: 'Ubuntu', serif;
-    font-size: 21px;
-    box-sizing: border-box;
-}
 
-#lyrics {
-    height: 43px;
-    width: 87px;
-    background-color: hotpink;
-    color: white;
-    font-family: 'Poppins', serif;
-    margin-left: 407px;
-    border-radius: 8px;
-    font-size: 19.3px;
-    font-weight: bold;
-    letter-spacing: 0.9px;
-    cursor: pointer;
-}
-
-#overlay {
-    height: 83.9vh;
-    width: 107rem;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 2;
-    margin: auto;
-    display: none;
-    position: fixed;
-}
 
 .content {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(/static/user_page_test_1.jpg);
@@ -241,7 +203,48 @@ h4 {
     margin-left: 45px;
 } */
 
+#lyrics_div {
+    height: 78vh;
+    width: 56vh;
+    /* margin: auto; */
+    /* margin-top: -771px; */
+    background-color: gainsboro;
+    border-radius: 12px;
+    display: none;
+    color: black;
+    z-index: 5;
+    padding: 15px;
+    font-family: 'Ubuntu', serif;
+    font-size: 21px;
+    box-sizing: border-box;
+    position: fixed;
+    margin-left: 601.4px;
+    margin-top: 12.5px;
+}
 
+#lyrics {
+    height: 43px;
+    width: 87px;
+    background-color: hotpink;
+    color: white;
+    font-family: 'Poppins', serif;
+    margin-left: 407px;
+    border-radius: 8px;
+    font-size: 19.3px;
+    font-weight: bold;
+    letter-spacing: 0.9px;
+    cursor: pointer;
+}
+
+#overlay {
+    height: 83.9vh;
+    width: 107rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2;
+    margin: auto;
+    display: none;
+    position: fixed;
+}
 
 .music_player {
     height: 80px;

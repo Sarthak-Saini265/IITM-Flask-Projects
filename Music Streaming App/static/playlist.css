@@ -116,17 +116,17 @@ h4 {
 
 #signin_logo {
     height: 48px;
-    width: 104px;
+    width: 145px;
     border-radius: 14px;
     font-family: 'Poppins', serif;
     color: black;
     font-weight: bold;
     cursor: pointer;
-    border: 3px solid;
-    animation: rainbow 6.5s linear infinite;
+    /* border: 3px solid; */
+    border: 3px solid crimson;
 }
 
-@keyframes rainbow {
+/* @keyframes rainbow {
     0% {
         border-color: red;
     }
@@ -158,7 +158,7 @@ h4 {
     100% {
         border-color: red;
     }
-}
+} */
 
 #signin_logo:hover {
     border-color: rgb(94, 90, 90) !important;
@@ -166,6 +166,131 @@ h4 {
 
 .colorful-button {
     margin-right: -715px;
+}
+
+#lyrics_div {
+    height: 78vh;
+    width: 56vh;
+    /* margin: auto; */
+    /* margin-top: -771px; */
+    background-color: gainsboro;
+    border-radius: 12px;
+    display: none;
+    color: black;
+    z-index: 5;
+    padding: 15px;
+    font-family: 'Ubuntu', serif;
+    font-size: 21px;
+    box-sizing: border-box;
+    position: fixed;
+    margin-left: 601.4px;
+    margin-top: 12.5px;
+}
+
+#lyrics {
+    height: 43px;
+    width: 87px;
+    background-color: hotpink;
+    color: white;
+    font-family: 'Poppins', serif;
+    margin-left: 407px;
+    border-radius: 8px;
+    font-size: 19.3px;
+    font-weight: bold;
+    letter-spacing: 0.9px;
+    cursor: pointer;
+}
+
+#overlay {
+    height: 83.9vh;
+    width: 107rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2;
+    margin: auto;
+    display: none;
+    position: fixed;
+}
+
+.music_player {
+    height: 80px;
+    width: 90%;
+    font-size: 45px;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    bottom: 0;
+    position: fixed;
+    align-items: center;
+    flex-direction: row;
+}
+
+.player {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 11%;
+    margin-left: 102px;
+}
+
+.player button {
+    color: white;
+    /* background-color: transparent; */
+    /* background-size: cover; */
+    border: none;
+}
+
+.player button:hover {
+    cursor: pointer;
+}
+
+#play_button {
+    width: 68px;
+    height: 68px;
+    background: transparent url('/static/play-button-282dddd57.png') no-repeat center;
+    background-size: cover;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+#rewind {
+    width: 53px;
+    height: 53px;
+    background: transparent url('/static/rewind-10-seconds-svgrepo-com.png') no-repeat center;
+    background-size: cover;
+}
+
+#seek {
+    width: 53px;
+    height: 53px;
+    background: transparent url('/static/seek-10-seconds-svgrepo-com.png') no-repeat center;
+    background-size: cover;
+}
+
+.song_loc {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+    width: 36%;
+    float: left;
+    margin-left: 12px;
+    margin-top: -30px;
+    align-items: flex-start;
+}
+
+.song_loc h5 {
+    color: white;
+    margin-bottom: -50px;
+    font-family: 'Poppins', serif;
+    margin-bottom: -48px;
+    font-size: 22px;
+    letter-spacing: 1.2px;
+}
+
+.song_loc h6 {
+    color: gray;
+    font-family: 'Poppins', serif;
+    font-size: 18px;
+    letter-spacing: 1.2px;
 }
 
 .content {
@@ -205,7 +330,7 @@ h4 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-bottom: 270px;
+    margin-bottom: 422px;
 }
 
 .song_name {
@@ -228,13 +353,13 @@ h4 {
     justify-content: flex-start;
 }
 
-.playlist_name{
+.playlist_name {
     color: white;
     font-size: 19px;
     font-family: 'Ubuntu', serif;
 }
 
-.playlist_name:hover{
+.playlist_name:hover {
     color: darkorange;
     text-decoration: underline;
 }
@@ -275,7 +400,7 @@ h4 {
 }
 
 
-h1{
+h1 {
     font-family: 'Ubuntu', serif;
     color: white;
     font-weight: 400;
@@ -285,24 +410,19 @@ h1{
     margin-bottom: -9px;
 }
 
-.head_edit{
+.head_edit {
     display: flex;
     flex-direction: row;
     height: 83px;
 }
 
-.edit_play{
+.edit_play {
     background: transparent;
     scale: 8%;
     margin-left: -212px;
     margin-top: -34px;
 }
 
-.edit_play:hover{
+.edit_play:hover {
     cursor: pointer;
 }
-
-
-
-
-
