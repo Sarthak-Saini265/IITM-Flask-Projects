@@ -181,7 +181,7 @@ def get_songs_by_album(username, album_id):
     album_name = album.name
     album_songs = album.album_songs
 
-    return render_template('album.html', album_songs=album_songs, username=username, album_name=album_name)
+    return render_template('album.html', album_songs=album_songs, username=username, album_name=album_name, album=album)
 
 @app.route('/<username>/song/<int:song_id>/update', methods = ['GET', 'POST'])
 def update_song(username, song_id):
@@ -245,7 +245,8 @@ def update_playlist_puter(username, playlist_id):
     
 @app.route('/<username>/album/<int:album_id>/edit')
 def update_album(username, album_id):
-    all_songs = songs.query.all()
+    user = login.query.filter_by(username=username).first()
+    uploaded_songs = songs.query.filter_by(creator_id=user.user_id)
     album = albums.query.get(album_id)
     album_songs = album.album_songs
     song_ids = []
@@ -253,7 +254,7 @@ def update_album(username, album_id):
         song_ids.append(i.song.song_id)
     print(song_ids)
 
-    return render_template('update_album.html', all_songs=all_songs, song_ids=song_ids, album_id=album_id, username=username, album=album)
+    return render_template('update_album.html', uploaded_songs=uploaded_songs, song_ids=song_ids, album_id=album_id, username=username, album=album)
 
 @app.route('/<username>/album/<int:album_id>', methods=['GET', 'POST'])
 def update_album_puter(username, album_id):

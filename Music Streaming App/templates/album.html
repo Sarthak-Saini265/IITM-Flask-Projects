@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/creator_page.css">
+    <link rel="stylesheet" href="/static/albums.css">
     <title>Creator Page</title>
 </head>
 
@@ -24,16 +24,30 @@
                 </ul>
             </nav>
         </header>
-        <h2 id="heading_text">Album : {{album_name}}</h2>
+        <div class="head_edit">
+            <h1>Album : {{album_name}}</h1>
+            <button class="edit_play">
+                <a href="/{{username}}/album/{{album.album_id}}/edit">
+                <img src="/static/edit.png" alt="Edit Icon"></a>
+            </button>
+        </div>
         <div class="uploaded">
-            {% for song in album_songs %}
-            <div class="songs">
-                <h2 class="song_name">{{song.song.name}}</h2>
-                <button class="song_play" data-mp3="{{song.song.path}}">Play</button>
+            <div class="all_songs">
+                {% for song in album_songs %}
+                    <div class="songs">
+                        <h2 class="song_name">{{song.song.name}}</h2>
+                        <div class="except_name">  
+                            <button class="song_play" data-mp3="{{song.song.path}}">▶</button>
+                            <div class="crud">
+                                <a href="/{{username}}/song/{{song.song_id}}/update"><button class="update">✎</button></a>
+                                <a href="/{{username}}/song/{{song.song_id}}/delete"><button class="delete">🗑</button></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
-    <script src="/static/song_play.js"></script>
+    <script src="/static/song_play_creator.js"></script>
 </body>
 </html>

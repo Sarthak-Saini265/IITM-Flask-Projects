@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/create_playlist.css">
     <title>Create a Playlist</title>
 </head>
 <body>
@@ -10,11 +16,11 @@
         <div class="upload">
             <h1 class="head">Create a Playlist</h1>
             <form action="/playlist/create/{{username}}" method="POST">
-                <input name="name" type="text", placeholder="Name of the playlist">
+                <input name="name" type="text" class="play_name" placeholder="Name of the playlist">
                 <div><br>
                     <label>Select Songs: </label>
                     {% for song in all_songs %}
-                        <input type="checkbox" name="songs" value= "{{song.song_id}}"/>
+                        <input type="checkbox" name="songs" class = "checkbox" value= "{{song.song_id}}"/>
                         <label>{{song.name}}</label>
                     {% endfor %}
                 </div><br>

@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/create_album.css">
     <title>Update Album</title>
 </head>
 <body>
@@ -10,17 +16,17 @@
         <div class="upload">
             <h1 class="head">Update Album : {{album.name}}</h1>
             <form action="/{{username}}/album/{{album.album_id}}" method="POST">
-                <input name="name" type="text", placeholder="Name of the album", value="{{album.name}}">
-                <input name="artist" type="text", placeholder="Name of the artist", value="{{album.artist}}">
-                <input name="genre" type="text", placeholder="Genre of the album", value="{{album.genre}}">
+                <input name="name" type="text" class="album_name" placeholder="Name of the album", value="{{album.name}}">
+                <input name="artist" type="text" class="album_artist" placeholder="Name of the artist", value="{{album.artist}}">
+                <input name="genre" type="text" class="album_genre" placeholder="Genre of the album", value="{{album.genre}}">
                 <div><br>
                     <label>Select Songs: </label>
-                    {% for song in all_songs %}
+                    {% for song in uploaded_songs %}
                         {% if song.song_id in song_ids %}
-                            <input type="checkbox" name="songs" value= "{{song.song_id}}" checked/>
+                            <input type="checkbox" class="checkbox" name="songs" value= "{{song.song_id}}" checked/>
                             <label>{{song.name}}</label>
                         {% else %}
-                            <input type="checkbox" name="songs" value= "{{song.song_id}}"/>
+                            <input type="checkbox" class="checkbox" name="songs" value= "{{song.song_id}}"/>
                             <label>{{song.name}}</label>
                         {% endif %}
                     {% endfor %}
