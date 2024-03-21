@@ -48,7 +48,7 @@
         <div class="content">
             {% for album in all_albums %}
                 <div class="albums">
-                    <a href="/creator/{{username}}/album/{{album.album_id}}"><h2 class="album_name">{{album.name}}</h2></a>
+                    <a href="/user/{{username}}/album/{{album.album_id}}"><h2 class="album_name">{{album.name}}</h2></a>
                     <h3 class="artist_name">{{album.artist}}</h3>
                 </div>
             {% endfor %}

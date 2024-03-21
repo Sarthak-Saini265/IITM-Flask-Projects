@@ -77,12 +77,12 @@ function play(event) {
     }
 }
 
-function rewind_(){
+function rewind_() {
     let current = audio.currentTime;
-    audio.currentTime = current - 10; 
+    audio.currentTime = current - 10;
 }
 
-function seek_(){
+function seek_() {
     let current = audio.currentTime;
     audio.currentTime = current + 10;
 }

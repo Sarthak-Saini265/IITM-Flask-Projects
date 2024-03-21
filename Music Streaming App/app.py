@@ -142,6 +142,18 @@ def all_albums(username):
     all_playlists = playlists.query.all()
     return render_template('all_albums.html', username=username, all_albums=all_albums, all_playlists=all_playlists)
 
+@app.route('/user/<username>/album/<int:album_id>')
+def get_user_songs_by_album(username, album_id):
+    all_albums = albums.query.all()
+    album = albums.query.get(album_id)
+    all_playlists = playlists.query.all()
+
+    if not album:
+        return abort('error: Album not found'), 404
+    
+    album_songs = album.album_songs
+
+    return render_template('user_album.html', album_songs=album_songs, username=username, all_albums=all_albums, album=album, all_playlists=all_playlists)
 
 @app.route('/user/<username>/new_playlist')
 def create_playlist(username):

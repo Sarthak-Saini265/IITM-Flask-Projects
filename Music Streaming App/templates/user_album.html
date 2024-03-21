@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/playlist.css">
+    <title>User Page</title>
+</head>
+
+<body>
+    <div class="main_div">
+        <header id="head1" class="navbar_head">
+            <nav id="nav1" class="navbar">
+                <ul>
+                    <li><input type="text" id="search" placeholder="What's on your mind?"></li>
+                </ul>
+            </nav>
+            <a href="/creator" class="colorful-button"><button id="signin_logo">Become a Creator</button></a>
+        </header>
+        <div class="side_bar">
+            <a href="/user/{{username}}" class="side_text">
+                <h2 id="home">Home</h2>
+            </a>
+            <a href="/user/{{username}}/all_albums" class="side_text">
+                <h2 id="album">Albums</h2>
+            </a>
+            <a href="#" class="side_text">
+                <h2 id="playlist">Playlists</h2>
+            </a>
+            <a href="/user/{{username}}/new_playlist" id="n_play">
+                <div class="new_playlist">
+                    <h4>+</h4>
+                    New Playlist
+                </div>
+            </a>
+            <div class="playlists">
+                {% for play in all_playlists %}
+                    <a href="/user/{{username}}/playlist/{{play.playlist_id}}" class="playlist_name">{{play.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content">
+            <div class="head_edit">
+                <h1>Album : {{album.name}}</h1>
+            </div>
+            <div class="all_songs">
+                {% for song in album_songs %}
+                    <div class="songs">
+                        <h3 class="song_name">{{song.song.name}}</h3>
+                        <div class="except_name">
+                            <button class="song_play" data-mp3="{{song.song.path}}" name-mp3="{{song.song.name}}" artist-mp3="{{song.song.artist}}" lyr-mp3="{{song.song.lyrics}}">▶</button><br>
+                            <label for="song_rating" id="choose_rating">Choose a Rating:</label>
+                            <select name="rating" class="ratings" id="song_rating"
+                                onchange="handleRatingChange(this, '{{song.song.path}}', '{{song.song.song_id}}', '{{username}}')">
+                                <option value="select">Select a Rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="overlay"></div>
+            <div id="lyrics_div"></div>
+            <div class="music_player">
+                <div class="song_loc">
+                    <h5 id="name-song">Nothing Playing Right Now!</h5>
+                    <h6 id="artist_name"></h6>
+                </div>
+                <div class="player">
+                    <button id="rewind"></button>
+                    <button id="play_button"></button>
+                    <button id="seek"></button>
+                </div>
+                <button id="lyrics">Lyrics</button>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    <!-- <script src="/static/rgb_button.js"></script> -->
+    <script src="/static/song_play.js"></script>
+    <script src="/static/lyrics.js"></script>
+    <script src="/static/rating.js"></script>
+    <script src="/static/user_page_song_name.js"></script>
+    <!-- <script src="/static/playlist.js"></script> -->
+</body>
+
+</html>
