@@ -93,7 +93,7 @@ h4 {
 
 }
 
-form{
+form {
     display: flex;
     flex-direction: row;
 }
@@ -123,7 +123,7 @@ form{
     outline: none;
 }
 
-#search_button{
+#search_button {
     height: 40px;
     width: 100px;
     border-radius: 6px;
@@ -137,7 +137,7 @@ form{
     margin-left: 10px;
 }
 
-#search_button:hover{
+#search_button:hover {
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.40);
 }
@@ -209,9 +209,10 @@ form{
     margin-left: 189px;
     margin-top: -911px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
+    overflow-y: auto;
 }
 
 
@@ -382,8 +383,8 @@ form{
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    margin-bottom: 371px;
-    margin-top: 34px;
+    /* margin-bottom: 371px; */
+    /* margin-top: 34px; */
 }
 
 
@@ -433,6 +434,54 @@ form{
     display: none;
 }
 
+.all_albums{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.albums {
+    height: 233px;
+    width: 257px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.75);
+    margin-top: 11px;
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.23s ease-in-out;
+}
+
+.album_name {
+    color: white;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+    font-size: 20px;
+    padding-left: 20px;
+    height: 60px;
+    padding-right: 17px;
+}
+
+.artist_name{
+    color: white;
+    font-family: 'Poppins', serif;
+    letter-spacing: 1px;
+    font-size: 20px;
+    padding-left: 20px;
+    height: 60px;
+    padding-right: 17px;
+}
+
+.album_name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
 .playlists {
     background-color: black;
     height: 302px;
@@ -480,6 +529,7 @@ form{
     background-color: rgba(128, 128, 128, 0.5);
 }
 
+
 .except_name {
     display: flex;
     flex-direction: column;
@@ -489,7 +539,29 @@ form{
     margin-bottom: 23px;
 }
 
+.search_songs{
+    font-size: 38px !important;
+    padding-left: 15px;
+    color: gainsboro;
+    font-family: 'Ubuntu', serif;
+    letter-spacing: 0.7px;
+}
 
+.search_albums{
+    font-size: 38px !important;
+    padding-left: 15px;
+    color: gainsboro;
+    font-family: 'Ubuntu', serif;
+    letter-spacing: 0.7px;
+}
+
+.nothing_found{
+    font-size: 38px !important;
+    padding-left: 15px;
+    color: gainsboro;
+    font-family: 'Ubuntu', serif;
+    letter-spacing: 0.7px;
+}
 
 #choose_rating {
     color: white;

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, jsonify
+from sqlalchemy import func
 from flask_restful import Api, reqparse, abort
 from api.user_resource import new_acc
 from api.song_resource import Todo
@@ -327,7 +328,19 @@ def post_rating(username, song_id, rating_given):
         return str(response.status_code)
         
 
+@app.route('/user/<username>/search')
+def search(username):
+    all_playlists = playlists.query.all()
+    user = login.query.filter_by(username=username, acc_type='General').first()
+    rating = ratings.query.filter_by(user_id=user.user_id).all()
+    search_query = request.args.get('query', '').lower()
+    if search_query:
+        all_songs = songs.query.filter(func.lower(songs.name).like(f"%{search_query}%") | func.lower(songs.artist).like(f"%{search_query}%")).all()
+        all_albums = albums.query.filter(func.lower(albums.name).like(f"%{search_query}%") | func.lower(albums.artist).like(f"%{search_query}%")).all()
 
+        return render_template('search.html', all_songs=all_songs, all_playlists=all_playlists, rating=rating, username=username, all_albums=all_albums)
+    else:
+        return "Please provide a search query."
 
 
 

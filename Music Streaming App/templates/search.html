@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/user_page.css">
+    <link rel="stylesheet" href="/static/search.css">
     <title>User Page</title>
 </head>
 
@@ -49,6 +49,7 @@
             </div>
         </div>
         <div class="content">
+            <h2 class="search_songs">Songs - </h2>
             <div class="all_songs">
                 {% for song in all_songs %}
                 <div class="songs">
@@ -79,6 +80,16 @@
                 </div>
                 {% endfor %}
             </div>
+            <h2 class="search_albums">Albums - </h2>
+            <div class="all_albums">
+                {% for album in all_albums %}
+                    <div class="albums">
+                        <a href="/user/{{username}}/album/{{album.album_id}}"><h2 class="album_name">{{album.name}}</h2></a>
+                        <h3 class="artist_name">{{album.artist}}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+            <h2 class="nothing_found">No results found !!</h2>
             <div id="overlay"></div>
             <div id="lyrics_div"></div>
             <div class="music_player">
@@ -101,6 +112,7 @@
     <script src="/static/rating.js"></script>
     <script src="/static/user_page_song_name.js"></script>
     <script src="/static/lyrics.js"></script>
+    <script src="/static/search_display.js"></script>
     <!-- <script src="/static/background.js"></script> -->
     <!-- <script src="/static/playlist.js"></script> -->
 </body>
